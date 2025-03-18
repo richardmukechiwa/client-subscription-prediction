@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
     
 __version__ = "0.0.0"
 
-REPO_NAME = "Loan Approval"
+REPO_NAME = "Loan-Approval-"
 AUTHOR_USER_NAME = "richardmukechiwa"
 SRC_REPO = "loanClassifier"
 AUTHOR_EMAIL  = "mukechiwarichard@gmail.com"
@@ -22,6 +22,6 @@ setuptools.setup(
     project_urls={
         "Bug Tracker": f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}/issues",
     },
-    packages_dir={"": "src"},   
-    packages=setuptools.find_packages(where="src"),
+    package_dir={"": "src"},   
+    packages=setuptools.find_packages(where="src")
 )
