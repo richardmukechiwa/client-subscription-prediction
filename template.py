@@ -22,7 +22,7 @@ list_of_files =[
     "dvc.yaml",
     "params.yaml",
     "main.py",
-    "app.py",
+    "classy_app.py",
     "requirements.txt", 
     "setup.py",     
     "research/trials.ipynb",
