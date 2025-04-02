@@ -1,4 +1,4 @@
-from loanClassifier import logger
+from src.loanClassifier import logger
 
 
 logger.info("Welcome to our custom logging")
