@@ -1,3 +1,4 @@
+#importing dependencies
 import os
 from pathlib import Path
 import logging
@@ -18,20 +19,22 @@ list_of_files =[
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/entity/__init__.py",   
     f"src/{project_name}/constants/__init__.py",
+    f"src/{project_name}/tests/test_model.py",
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
     "main.py",
-    "classy_app.py",
+    "class_app.py",
     "requirements.txt", 
     "setup.py",     
     "research/trials.ipynb",
     "templates/index.html",
-    "train.py"
+    "pyproject.toml",
+     "mlflow.py"
     
     
 ]
-
+#creating folders and files
 for filepath in list_of_files:
     filepath= Path(filepath)
     filedir, filename = os.path.split(filepath)
