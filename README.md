@@ -11,4 +11,6 @@ This project aims to predict whether a loan application will be approved based o
 6. Update the components
 7. Update the pipeline
 8. Update the main.py
+9. Update the tests
+10. Update the dvc.py
 9. Update the app.py

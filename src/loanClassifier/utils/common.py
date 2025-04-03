@@ -1,21 +1,22 @@
-
 #import libraries
 import os
-import base64
 from pathlib import Path
 from typing import Any
 import json
 import yaml
 import joblib
 from ensure import ensure_annotations
-from box.exceptions import BoxValueError
+from loanClassifier import logger
 from box import ConfigBox
+from box.exceptions import BoxValueError
+import base64   
+import numpy as np
 from loanClassifier import logger
 
 
 
 @ensure_annotations
-def read_yaml(path_to_yaml: Path) ->ConfigBox:
+def read_yaml(path_to_yaml: Path) -> Box:
     """reads yaml file and returns
 
     Args:
@@ -26,13 +27,13 @@ def read_yaml(path_to_yaml: Path) ->ConfigBox:
         e: empty file
 
     Returns:
-        ConfigBox: ConfigBox type
+        Box: Box type
     """
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            return ConfigBox(content)
+            return Box(content)
     except BoxError:
         raise ValueError("yaml file is empty")
     except Exception as e:
@@ -71,14 +72,14 @@ def save_json(path: Path, data: dict):
 
 
 @ensure_annotations
-def load_json(path: Path) -> ConfigBox:
+def load_json(path: Path) -> Box:
     """load json files data
 
     Args:
         path (Path): path to json file
 
     Returns:
-        ConfigBox: data as class attributes instead of dict
+        Box: data as class attributes instead of dict
     """
     with open(path) as f:
         content = json.load(f)
