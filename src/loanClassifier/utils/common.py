@@ -6,9 +6,8 @@ import json
 import yaml
 import joblib
 from ensure import ensure_annotations
-from loanClassifier import logger
-from box import ConfigBox
 from box.exceptions import BoxValueError
+from box import ConfigBox
 import base64   
 import numpy as np
 from loanClassifier import logger
@@ -85,7 +84,7 @@ def load_json(path: Path) -> Box:
         content = json.load(f)
 
     logger.info(f"json file loaded succesfully from: {path}")
-    return ConfigBox(content)
+    return Box(content)
 
 
 @ensure_annotations
