@@ -1,3 +1,4 @@
+#import setuptools
 import setuptools
 
 with open("README.md", "r", encoding="utf-8") as f:
@@ -5,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
     
 __version__ = "0.0.0"
 
-REPO_NAME = "Loan-Approval-"
+REPO_NAME = "Loan-Approval"
 AUTHOR_USER_NAME = "richardmukechiwa"
 SRC_REPO = "loanClassifier"
 AUTHOR_EMAIL  = "mukechiwarichard@gmail.com"

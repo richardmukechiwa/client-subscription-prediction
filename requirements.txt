@@ -7,12 +7,11 @@ numpy
 matplotlib
 seaborn
 python-box==6.0.2
-pyyaml
+PyYAML
 tqdm
 ensure==1.0.2
 joblib
 types-PyYAML
 Flask
 Flask-Cors
-pyproject.toml 
 -e .
