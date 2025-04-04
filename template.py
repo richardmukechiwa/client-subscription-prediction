@@ -23,6 +23,7 @@ list_of_files =[
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
+    "schema.yaml",
     "main.py",
     "class_app.py",
     "requirements.txt", 
