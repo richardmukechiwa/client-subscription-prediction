@@ -6,7 +6,7 @@ import logging
 #logging string
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s')
 
-project_name = "loanClassifier"
+project_name = "clientClassifier"
 
 list_of_files =[
     ".github/workflows/.gitkeep",
