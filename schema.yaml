@@ -1,0 +1,22 @@
+COLUMNS:
+  Id: int
+  Age: int
+  Job: string
+  Marital: string
+  Education: string
+  Default: string
+  Balance: int
+  Housing: string
+  Loan: string
+  Contact: string
+  Day: int
+  Month: string
+  Duration: int
+  Campaign: int
+  Pdays: int
+  Previous: int
+  Poutcome: string
+  Subscription: string
+
+TARGET_COLUMN:
+  name: Subscription
