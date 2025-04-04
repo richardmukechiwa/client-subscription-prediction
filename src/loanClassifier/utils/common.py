@@ -1,21 +1,18 @@
-#import libraries
 import os
-from pathlib import Path
-from typing import Any
-import json
+from box.exceptions import BoxValueError
 import yaml
+from mlProject import logger
+import json
 import joblib
 from ensure import ensure_annotations
-from box.exceptions import BoxValueError
 from box import ConfigBox
-import base64   
-import numpy as np
-from loanClassifier import logger
+from pathlib import Path
+from typing import Any
 
 
 
 @ensure_annotations
-def read_yaml(path_to_yaml: Path) -> Box:
+def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
 
     Args:
@@ -26,14 +23,14 @@ def read_yaml(path_to_yaml: Path) -> Box:
         e: empty file
 
     Returns:
-        Box: Box type
+        ConfigBox: ConfigBox type
     """
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            return Box(content)
-    except BoxError:
+            return ConfigBox(content)
+    except BoxValueError:
         raise ValueError("yaml file is empty")
     except Exception as e:
         raise e
@@ -71,20 +68,20 @@ def save_json(path: Path, data: dict):
 
 
 @ensure_annotations
-def load_json(path: Path) -> Box:
+def load_json(path: Path) -> ConfigBox:
     """load json files data
 
     Args:
         path (Path): path to json file
 
     Returns:
-        Box: data as class attributes instead of dict
+        ConfigBox: data as class attributes instead of dict
     """
     with open(path) as f:
         content = json.load(f)
 
     logger.info(f"json file loaded succesfully from: {path}")
-    return Box(content)
+    return ConfigBox(content)
 
 
 @ensure_annotations
@@ -112,6 +109,8 @@ def load_bin(path: Path) -> Any:
     data = joblib.load(path)
     logger.info(f"binary file loaded from: {path}")
     return data
+
+
 
 @ensure_annotations
 def get_size(path: Path) -> str:
