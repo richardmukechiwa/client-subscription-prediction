@@ -6,3 +6,8 @@ data_ingestion:
   source_URL: https://github.com/richardmukechiwa/Datasets/raw/refs/heads/main/bank.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+data_validation:
+  root_dir: artifacts/data_validation
+  unzip_dir: artifacts/data_ingestion/bank.csv
+  STATUS_FILE: artifacts/data_validation/status.txt

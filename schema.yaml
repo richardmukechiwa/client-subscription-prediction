@@ -16,7 +16,7 @@ COLUMNS:
   Pdays: int
   Previous: int
   Poutcome: string
-  Subscription: string
+  y : string
 
 TARGET_COLUMN:
-  name: Subscription
+  name: y
