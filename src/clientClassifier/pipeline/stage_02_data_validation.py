@@ -1,6 +1,7 @@
 from clientClassifier.config.configuration import ConfigurationManager
 from clientClassifier.components.data_validation import DataValidation      
 from clientClassifier import logger 
+from pathlib import Path
 
 STAGE_NAME = "Data Validation stage"
 

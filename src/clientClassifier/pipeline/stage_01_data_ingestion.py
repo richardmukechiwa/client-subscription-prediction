@@ -1,6 +1,7 @@
 from clientClassifier.config.configuration import ConfigurationManager
 from clientClassifier.components.data_ingestion import DataIngestion    
 from clientClassifier import logger
+from pathlib import Path
 
 STAGE_NAME = "Data Ingestion Stage"
 
