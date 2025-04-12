@@ -25,4 +25,10 @@ model_trainer:
   preprocessor_name: preprocessor.joblib
   sm_model_name: sm_model.joblib
   sm_processor_name: sm_preprocessor.joblib
+  rf_model_name: rf_model.joblib
+  rf_preprocessor_name: rf_preprocessor.joblib
+  rf_smote_model_name: rf_smote_model.joblib
+  rf_smote_preprocessor_name: rf_smote_preprocessor.joblib
+  xgb_model_name: xgb_model.joblib
+  xgb_preprocessor_name: xgb_preprocessor.joblib  
 
