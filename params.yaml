@@ -1,1 +1,7 @@
-key : value
+Logistic_Regression:
+  class_weight: "balanced"
+  max_iter: 1000
+  penalty: l2
+  C: 1.0
+  solver: "lbfgs"
+  random_state: 42

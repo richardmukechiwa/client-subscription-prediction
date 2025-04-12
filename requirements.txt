@@ -16,5 +16,6 @@ Flask
 Flask-Cors
 setuptools
 imblearn
+optuna
 
 -e .

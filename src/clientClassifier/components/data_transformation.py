@@ -22,7 +22,7 @@ class DataTransformation:
         
         
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
   
         
@@ -48,7 +48,7 @@ class DataTransformation:
                
         
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         
          # check for missing values
@@ -96,7 +96,7 @@ class DataTransformation:
             logger.info(f"No class imbalance found in the data")   
           
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()  
         
         # convert target variable to binary 
@@ -105,7 +105,7 @@ class DataTransformation:
         logger.info(f"Target variable converted to binary")
         
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         
         #exploratory data analysis (EDA)
@@ -138,13 +138,13 @@ class DataTransformation:
         
         logger.info("Correlation matrix analysis complete.")
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         # General observations
         logger.info("Most features in the dataset show low pairwise correlation, suggesting minimal multicollinearity.")
         logger.info("This is good for tree-based models which are not sensitive to multicollinearity, but may still affect linear models like logistic regression.")
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         # Target correlation
         logger.info("'duration' has a very strong positive correlation with the target variable 'y'.")
@@ -158,19 +158,19 @@ class DataTransformation:
           
     
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         # Next step suggestions
         logger.info("Consider conducting feature importance analysis using Random Forest or XGBoost to refine feature selection.")
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         #drop the 'duration' column
         df.drop(columns=['duration'], inplace=True)
         
         logger.info(f"'duration' column dropped from the data")
         print()
-        print('<' * 70)
+        print('<' * 120)
         print()
         # drop the 'Unnamed: 0' column if it exists
         if 'Unnamed: 0' in df.columns:
