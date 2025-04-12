@@ -23,4 +23,6 @@ model_trainer:
   test_data_path: artifacts/data_transformation/test.csv
   model_name: model.joblib
   preprocessor_name: preprocessor.joblib
+  sm_model_name: sm_model.joblib
+  sm_processor_name: sm_preprocessor.joblib
 
