@@ -28,7 +28,6 @@ class DataTransformationTrainingPipeline:
             data_transformation_config = config.get_data_transformation_config()    
             data_transformation = DataTransformation(config=data_transformation_config)
             data_transformation.initiate_data_transformation()
-            df = data_transformation.load_data()  # Assuming a method to load data exists
             data_transformation.split_data(df)
             
             

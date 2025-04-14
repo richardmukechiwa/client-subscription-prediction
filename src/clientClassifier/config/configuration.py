@@ -2,7 +2,8 @@ from clientClassifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH, SCHEM
 from clientClassifier.utils.common import read_yaml, create_directories
 from clientClassifier.entity.config_entity import (DataIngestionConfig,
                                                    DataValidationConfig,
-                                                   DataTransformationConfig)    
+                                                   DataTransformationConfig,
+                                                   ModelTrainerConfig)    
 
 class ConfigurationManager:
     def __init__(
@@ -64,3 +65,33 @@ class ConfigurationManager:
             data_path= config.data_path,
         )
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer     
+        params = self.params.Logistic_Regression
+        schema = self.schema.TARGET_COLUMN
+        
+        
+
+        create_directories([config["root_dir"]])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            model_name=config.model_name,
+            preprocessor_name=config.preprocessor_name,
+            sm_model_name=config.sm_model_name,
+            sm_processor_name=config.sm_processor_name,
+            target_column=schema.name,
+            class_weight=params.class_weight,
+            max_iter=params.max_iter,
+            penalty=params.penalty,
+            C=params.C,
+            solver=params.solver,
+            random_state=params.random_state
+        )
+
+        return model_trainer_config
+    
+    
