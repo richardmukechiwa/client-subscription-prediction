@@ -15,3 +15,26 @@ This project aims to predict whether a loan application will be approved based o
 9. Update the tests
 10. Update the dvc.py
 11. Update the app.py
+
+
+## Dagshub
+
+[[dagshub](https://dagshub.com)
+
+Run this the code below to track the project on Dagshub:
+
+#####  Use Your Own Parameters
+
+```python
+
+import dagshub
+dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-prediction', mlflow=True)
+
+import mlflow
+with mlflow.start_run():
+  mlflow.log_param('parameter name', 'value')
+  mlflow.log_metric('metric name', 1)
+
+```
+
+
