@@ -30,8 +30,7 @@ list_of_files =[
     "setup.py",     
     "research/trials.ipynb",
     "templates/index.html",
-    "pyproject.toml",
-    "mlflow.py"
+    "pyproject.toml"
     
     
 ]
