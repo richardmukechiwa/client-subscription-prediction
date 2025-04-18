@@ -20,10 +20,12 @@ class DataTransformation:
          # showing the first 5 rows of the data
         logger.info(f"Data sample: {df.head()}")
         
+        #check data info
+        logger.info(f"Data info: {df.info()}")
         
-        print()
-        print('<' * 120)
-        print()
+
+        
+        
   
         
         # explain what each column represents 
@@ -48,7 +50,7 @@ class DataTransformation:
                
         
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         
          # check for missing values
@@ -96,18 +98,51 @@ class DataTransformation:
             logger.info(f"No class imbalance found in the data")   
           
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()  
         
         # convert target variable to binary 
         df['y'] = df['y'].map({'yes': 1, 'no': 0}) 
         
+    
+        
         logger.info(f"Target variable converted to binary")
         
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         
+        #check data types of all columns
+        for col in df.columns:  
+            print(f"Column: {col}, Data type: {df[col].dtype}")
+            
+        
+        logger.info(f"Data types of all columns checked")
+        
+        print()
+        print('<' * 70)
+        print()
+        
+        #change data type of 'y' column to integer
+        df['y'] = df['y'].astype('Int64')
+        
+        #check data type of 'y' column
+        print(f"Column: y, Data type: {df['y'].dtype}")
+
+        
+        logger.info("Target column data type changed")
+        
+        print()
+        print('<' * 70)
+        print()
+        
+        df['month'] = pd.to_datetime(df['month'], format='%b').dt.month
+        
+        print(df['y'].unique())
+        print(df['y'].dtype)
+        print(df['y'].head(10))
+
+        print("here")
         #exploratory data analysis (EDA)
         df['y'].value_counts().plot(kind='bar')
         plt.title('Target Variable Distribution')   
@@ -115,14 +150,35 @@ class DataTransformation:
         plt.ylabel('Count')
         plt.show()
         
+        print(df.dtypes)
+        print(df.head())
+
+
         # check for feature distribution based on the target variable  y    
         for col in df.select_dtypes(include=['int64', 'float64']).columns:  
             plt.figure(figsize=(8, 4))
-            sns.barplot(x='y', y=col, data=df, estimator=sum, errorbar=None, hue='y')  
+            sns.boxplot(x='y', y=col, data=df)  
+            plt.xticks(ticks=[0, 1], labels=["no", "yes"]) 
             plt.title(f'Distribution of {col} by Target Variable')
             plt.xlabel('Target Variable')
             plt.ylabel(col)
             plt.show()
+            
+            
+        print()
+        print('<' * 70)
+        print()
+            
+            
+         # check for feature distribution based on the target variable  y    
+        for col in df.select_dtypes(exclude=['int64', 'float64']).columns:  
+            plt.figure(figsize=(8, 4))
+            sns.countplot(x=col, data=df, hue='y')
+            plt.title(f'Distribution of {col} by Target Variable')
+            plt.xlabel('Target Variable')
+            plt.ylabel(col)
+            plt.show()
+            
                 
                 
        # check for feature correlation     
@@ -138,13 +194,13 @@ class DataTransformation:
         
         logger.info("Correlation matrix analysis complete.")
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         # General observations
         logger.info("Most features in the dataset show low pairwise correlation, suggesting minimal multicollinearity.")
         logger.info("This is good for tree-based models which are not sensitive to multicollinearity, but may still affect linear models like logistic regression.")
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         # Target correlation
         logger.info("'duration' has a very strong positive correlation with the target variable 'y'.")
@@ -158,19 +214,19 @@ class DataTransformation:
           
     
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         # Next step suggestions
         logger.info("Consider conducting feature importance analysis using Random Forest or XGBoost to refine feature selection.")
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         #drop the 'duration' column
         df.drop(columns=['duration'], inplace=True)
         
         logger.info(f"'duration' column dropped from the data")
         print()
-        print('<' * 120)
+        print('<' * 70)
         print()
         # drop the 'Unnamed: 0' column if it exists
         if 'Unnamed: 0' in df.columns:
@@ -184,8 +240,7 @@ class DataTransformation:
             df.drop(columns=['pdays'], inplace=True)
             logger.info(f"'pdays' column dropped from the data")
         else:
-            logger.info(f"'pdays' column not found in the data")    
-            
+            logger.info(f"'pdays' column not found in the data")
             
         return df
            
