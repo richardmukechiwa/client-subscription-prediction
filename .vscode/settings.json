@@ -3,6 +3,7 @@
         "disp",
         "fontsize",
         "isort",
+        "labelencoder",
         "optuna",
         "proprocessor",
         "xgboost"
