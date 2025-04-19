@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
+        "disp",
         "fontsize",
+        "isort",
         "optuna",
         "proprocessor",
         "xgboost"

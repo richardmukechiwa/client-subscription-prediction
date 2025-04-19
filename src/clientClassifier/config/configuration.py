@@ -81,6 +81,9 @@ class ConfigurationManager:
             test_data_path=config.test_data_path,
             model_name=config.model_name,
             preprocessor_name=config.preprocessor_name,
+            sm_model_pipeline_name=config.sm_model_pipeline_name,
+            label_encoder_name=config.label_encoder_name,
+            sm_label_encoder=config.sm_label_encoder,
             sm_model_name=config.sm_model_name,
             sm_processor_name=config.sm_processor_name,
             target_column=schema.name,
@@ -93,5 +96,4 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
-    
     

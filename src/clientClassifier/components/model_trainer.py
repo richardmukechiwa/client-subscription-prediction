@@ -1,46 +1,60 @@
 import os
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 import joblib
 from clientClassifier import logger
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from imblearn.over_sampling import SMOTE    
 from clientClassifier.entity.config_entity import ModelTrainerConfig
+from imblearn.pipeline import Pipeline as ImbPipeline
+
 
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
         self.config = config
-        
+
     def train(self):
         logger.info("Training model")
-        
-        # load train and test data
+
+        # Load train and test data
         train_data = pd.read_csv(self.config.train_data_path)
         test_data = pd.read_csv(self.config.test_data_path)
-        
-        # separate features and target variable
+
+        # Separate features and target variable
         X_train = train_data.drop(columns=[self.config.target_column], axis=1)
         y_train = train_data[self.config.target_column]
-        
+
         X_test = test_data.drop(columns=[self.config.target_column], axis=1)
         y_test = test_data[self.config.target_column]
-        
-        # create preprocessing pipeline for numerical and categorical features
-        numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()       
-        categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()   
 
+        # Identify numerical and categorical feature columns
+        numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
+        categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
+
+        # Apply Label Encoding to target variable
+        label_encoder = LabelEncoder()
+        y_train = label_encoder.fit_transform(y_train)
+        y_test = label_encoder.transform(y_test)
+
+        # Preprocessing for features
         numerical_transformer = StandardScaler()
-        categorical_transformer = OneHotEncoder(handle_unknown='ignore')                
-        
-        preprocessor = ColumnTransformer(   
+        categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
+        preprocessor = ColumnTransformer(
             transformers=[
                 ('num', numerical_transformer, numerical_features),
                 ('cat', categorical_transformer, categorical_features)
             ]
-        )   
+        )
+
+        # Now you can fit a model using preprocessor and encoded targets
+
+        logger.info("Preprocessing and label encoding complete")
+
         
         # create a pipeline with preprocessing and model
         pipeline = Pipeline([   
@@ -66,6 +80,17 @@ class ModelTrainer:
         report = classification_report(y_test, y_pred)
         cm = confusion_matrix(y_test, y_pred)   
         accuracy = accuracy_score(y_test, y_pred)   
+        
+        #create Confusion Matrix Display
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=label_encoder.classes_)
+        disp.plot()
+        plt.title("Logistic Regression Matrix without SMOTE")
+        plt.show()
+        
+        
+        
+        
+                    
 
         logger.info(f"Classification Report:\n{report}")
         logger.info(f"Confusion Matrix:\n{cm}") 
@@ -76,16 +101,18 @@ class ModelTrainer:
         
         model = pipeline.named_steps['classifier']
         preprocessor = pipeline.named_steps['preprocessor'] 
+
         model_path = os.path.join(self.config.root_dir, self.config.model_name)                     
         preprocessor_path = os.path.join(self.config.root_dir, self.config.preprocessor_name)
         joblib.dump(preprocessor, preprocessor_path)    
-        joblib.dump(model, model_path)  
+        joblib.dump(model, model_path)
+        joblib.dump(label_encoder, os.path.join(self.config.root_dir, self.config.label_encoder_name))
+          
         
         logger.info(f"Model saved at: {model_path}")
         logger.info(f"Preprocessor saved at: {preprocessor_path}")      
         
-        # save the model
-        joblib.dump(model, os.path.join(self.config.root_dir, self.config.model_name))
+     
         
   
     def train_with_SMOTE(self):
@@ -101,11 +128,17 @@ class ModelTrainer:
 
         X_test = test_data.drop(columns=[self.config.target_column])
         y_test = test_data[self.config.target_column]
+        
+        # Apply Label Encoding to target variable
+        label_encoder = LabelEncoder()
+        y_train = label_encoder.fit_transform(y_train)
+        y_test = label_encoder.transform(y_test)
 
         # Define numerical and categorical features
         numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
         categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
-
+        
+   
         # Transformers
         numerical_transformer = StandardScaler()
         categorical_transformer = OneHotEncoder(handle_unknown='ignore')
@@ -117,15 +150,6 @@ class ModelTrainer:
             ]
         )
 
-        #  Preprocess X_train using fit_transform (fit only on training data)
-        X_train_processed = sm_preprocessor.fit_transform(X_train)
-
-        # Applying SMOTE to resample training data
-        smote = SMOTE(random_state=self.config.random_state)
-        X_resampled, y_resampled = smote.fit_resample(X_train_processed, y_train)
-
-        logger.info(f"After SMOTE: {X_resampled.shape}, Target distribution: {dict(pd.Series(y_resampled).value_counts())}")
-
         #  Fitting model on resampled data
         model = LogisticRegression(
             class_weight=self.config.class_weight,
@@ -135,22 +159,38 @@ class ModelTrainer:
             solver = self.config.solver,
             random_state=self.config.random_state
         )
+        
+        # use the sm_pipeline to transform the data
+        sm_pipeline = ImbPipeline([
+            ('preprocessor', sm_preprocessor),
+            ('smote', SMOTE(random_state=self.config.random_state)),
+            ('classifier', model)
+        ])
 
-        model.fit(X_resampled, y_resampled)
+        sm_pipeline.fit(X_train, y_train)
             
         # make predictions on the test data 
-        X_test_processed = sm_preprocessor.transform(X_test)
-        y_pred_resampled = model.predict(X_test_processed)
+        y_pred = sm_pipeline.predict(X_test)
 
         # evaluate the model
-        resampled_report = classification_report(y_test, y_pred_resampled)
-        resampled_cm = confusion_matrix(y_test, y_pred_resampled)   
-        resampled_accuracy = accuracy_score(y_test, y_pred_resampled)   
+        resampled_report = classification_report(y_test, y_pred)
+        resampled_cm = confusion_matrix(y_test, y_pred)   
+        resampled_accuracy = accuracy_score(y_test, y_pred)
+        
+        #create Confusion Matrix Display
+        cm_display = ConfusionMatrixDisplay(confusion_matrix=resampled_cm, display_labels=label_encoder.classes_)
+        cm_display.plot()
+        plt.title("Logistic Regression with Matrix SMOTE")
+        plt.show()
+        
+                                            
 
         logger.info(f"Classification Report:\n{resampled_report}")
         logger.info(f"Confusion Matrix:\n{resampled_cm}") 
         logger.info(f"Accuracy: {resampled_accuracy}")   
             
-        # save the model
-        joblib.dump(model, os.path.join(self.config.root_dir, self.config.sm_model_name))
-        joblib.dump(sm_preprocessor, os.path.join(self.config.root_dir, self.config.sm_processor_name))
+    
+        # Save the model and preprocessor
+        joblib.dump(sm_pipeline,
+                    os.path.join(self.config.root_dir, 
+                    self.config.sm_model_pipeline_name))

@@ -17,5 +17,7 @@ Flask-Cors
 setuptools
 imblearn
 optuna
+black
+isort
 
 -e .

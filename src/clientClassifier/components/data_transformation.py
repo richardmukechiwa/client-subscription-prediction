@@ -101,16 +101,7 @@ class DataTransformation:
         print('<' * 70)
         print()  
         
-        # convert target variable to binary 
-        df['y'] = df['y'].map({'yes': 1, 'no': 0}) 
-        
-    
-        
-        logger.info(f"Target variable converted to binary")
-        
-        print()
-        print('<' * 70)
-        print()
+       
         
         #check data types of all columns
         for col in df.columns:  
@@ -123,9 +114,7 @@ class DataTransformation:
         print('<' * 70)
         print()
         
-        #change data type of 'y' column to integer
-        df['y'] = df['y'].astype('Int64')
-        
+       
         #check data type of 'y' column
         print(f"Column: y, Data type: {df['y'].dtype}")
 
@@ -266,4 +255,5 @@ class DataTransformation:
         
         
         return train_set, test_set
+    
     

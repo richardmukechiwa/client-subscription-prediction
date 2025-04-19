@@ -30,6 +30,8 @@ class ModelTrainerConfig:
     test_data_path: Path
     model_name: str
     preprocessor_name: str
+    label_encoder_name: str
+    sm_label_encoder: str
     sm_model_name: str
     sm_processor_name: str
     target_column: str
@@ -39,3 +41,4 @@ class ModelTrainerConfig:
     max_iter: int
     penalty: str    
     solver: str
+    sm_model_pipeline_name: str
