@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/79067d42e33243c580c715c1946998ed/artifacts
+end_time: 1745160044867
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 79067d42e33243c580c715c1946998ed
+run_name: mysterious-frog-141
+run_uuid: 79067d42e33243c580c715c1946998ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745160040525
+status: 3
+tags: []
+user_id: RICH-1

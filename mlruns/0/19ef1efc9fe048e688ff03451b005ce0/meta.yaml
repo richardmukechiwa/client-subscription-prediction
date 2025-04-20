@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/19ef1efc9fe048e688ff03451b005ce0/artifacts
+end_time: 1745156227656
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 19ef1efc9fe048e688ff03451b005ce0
+run_name: funny-cod-240
+run_uuid: 19ef1efc9fe048e688ff03451b005ce0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745156227617
+status: 4
+tags: []
+user_id: RICH-1

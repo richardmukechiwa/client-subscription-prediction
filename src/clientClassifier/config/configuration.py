@@ -1,9 +1,11 @@
 from clientClassifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH, SCHEMA_FILE_PATH
 from clientClassifier.utils.common import read_yaml, create_directories
+from pathlib import Path
 from clientClassifier.entity.config_entity import (DataIngestionConfig,
                                                    DataValidationConfig,
                                                    DataTransformationConfig,
-                                                   ModelTrainerConfig)    
+                                                   ModelTrainerConfig,
+                                                   ModelEvaluationConfig)    
 
 class ConfigurationManager:
     def __init__(
@@ -82,7 +84,7 @@ class ConfigurationManager:
             model_name=config.model_name,
             preprocessor_name=config.preprocessor_name,
             sm_model_pipeline_name=config.sm_model_pipeline_name,
-            label_encoder_name=config.label_encoder_name,
+            label_encoder_names=config.label_encoder_names,
             sm_label_encoder=config.sm_label_encoder,
             sm_model_name=config.sm_model_name,
             sm_processor_name=config.sm_processor_name,
@@ -96,4 +98,26 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+    
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config['model_evaluation']
+        params = self.params['Logistic_Regression']
+        schema = self.schema['TARGET_COLUMN']
+        
+        create_directories([config['root_dir']])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=Path(config['root_dir']),
+            test_data_path=Path(config['test_data_path']),
+            model_path=Path(config['model_path']),
+            preprocessor_path = Path(config['preprocessor_path']),
+            label_en= Path(config['label_en']),
+            all_params=params,
+            metric_file_name=Path(config['metric_file_name']),
+            target_column=schema.name,
+            mlflow_uri="https://dagshub.com/richardmukechiwa/client-subscription-prediction.mlflow"
+        )
+        
+        return model_evaluation_config
     

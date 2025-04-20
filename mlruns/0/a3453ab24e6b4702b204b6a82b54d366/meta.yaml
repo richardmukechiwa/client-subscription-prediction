@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/a3453ab24e6b4702b204b6a82b54d366/artifacts
+end_time: 1745160040508
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a3453ab24e6b4702b204b6a82b54d366
+run_name: resilient-ray-575
+run_uuid: a3453ab24e6b4702b204b6a82b54d366
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745159564768
+status: 3
+tags: []
+user_id: RICH-1

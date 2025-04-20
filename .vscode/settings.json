@@ -6,6 +6,8 @@
         "labelencoder",
         "optuna",
         "proprocessor",
-        "xgboost"
+        "xgboost",
+        "xticklabels",
+        "yticklabels"
     ]
 }

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/944841302723662370/7c5b2dd512484b639d8bda74a6707bfe/artifacts
+end_time: 1745168336308
+entry_point_name: ''
+experiment_id: '944841302723662370'
+lifecycle_stage: active
+run_id: 7c5b2dd512484b639d8bda74a6707bfe
+run_name: receptive-loon-406
+run_uuid: 7c5b2dd512484b639d8bda74a6707bfe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745168321578
+status: 3
+tags: []
+user_id: RICH-1

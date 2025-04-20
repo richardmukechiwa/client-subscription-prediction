@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/4a6d3654d00a4bd8ad1dfc7ad180f16d/artifacts
+end_time: 1745157373113
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4a6d3654d00a4bd8ad1dfc7ad180f16d
+run_name: thundering-fish-203
+run_uuid: 4a6d3654d00a4bd8ad1dfc7ad180f16d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745157365588
+status: 3
+tags: []
+user_id: RICH-1

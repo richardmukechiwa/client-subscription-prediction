@@ -1,20 +1,20 @@
-
-#import libraries
+# import libraries
+import json
 import os
 from pathlib import Path
 from typing import Any
-import json
-import yaml
+
 import joblib
-from ensure import ensure_annotations
-from box.exceptions import BoxValueError
+import yaml
 from box import ConfigBox
+from box.exceptions import BoxValueError
+from ensure import ensure_annotations
+
 from clientClassifier import logger
 
 
-
 @ensure_annotations
-def read_yaml(path_to_yaml: Path) ->ConfigBox:
+def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
 
     Args:
@@ -36,7 +36,6 @@ def read_yaml(path_to_yaml: Path) ->ConfigBox:
         raise ValueError("yaml file is empty")
     except Exception as e:
         raise e
-    
 
 
 @ensure_annotations
@@ -65,8 +64,6 @@ def save_json(path: Path, data: dict):
         json.dump(data, f, indent=4)
 
     logger.info(f"json file saved at: {path}")
-
-
 
 
 @ensure_annotations
@@ -112,6 +109,7 @@ def load_bin(path: Path) -> Any:
     logger.info(f"binary file loaded from: {path}")
     return data
 
+
 @ensure_annotations
 def get_size(path: Path) -> str:
     """get size in KB
@@ -122,15 +120,17 @@ def get_size(path: Path) -> str:
     Returns:
         str: size in KB
     """
-    size_in_kb = round(os.path.getsize(path)/1024)
+    size_in_kb = round(os.path.getsize(path) / 1024)
     return f"~ {size_in_kb} KB"
+
 
 def decodeImage(imgstring, fileName):
     imgdata = base64.b64decode(imgstring)
     with open(fileName, "wb") as f:
         f.write(imgdata)
         f.close()
-        
+
+
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())

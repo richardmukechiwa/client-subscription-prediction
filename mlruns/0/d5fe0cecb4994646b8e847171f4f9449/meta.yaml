@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/d5fe0cecb4994646b8e847171f4f9449/artifacts
+end_time: 1745155992254
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d5fe0cecb4994646b8e847171f4f9449
+run_name: whimsical-mink-467
+run_uuid: d5fe0cecb4994646b8e847171f4f9449
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745155992223
+status: 4
+tags: []
+user_id: RICH-1

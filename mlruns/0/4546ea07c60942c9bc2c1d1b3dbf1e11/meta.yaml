@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/4546ea07c60942c9bc2c1d1b3dbf1e11/artifacts
+end_time: 1745156114537
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4546ea07c60942c9bc2c1d1b3dbf1e11
+run_name: welcoming-goose-731
+run_uuid: 4546ea07c60942c9bc2c1d1b3dbf1e11
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745156114508
+status: 4
+tags: []
+user_id: RICH-1

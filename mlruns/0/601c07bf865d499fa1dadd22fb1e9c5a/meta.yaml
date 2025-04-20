@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/601c07bf865d499fa1dadd22fb1e9c5a/artifacts
+end_time: 1745161055958
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 601c07bf865d499fa1dadd22fb1e9c5a
+run_name: useful-fly-809
+run_uuid: 601c07bf865d499fa1dadd22fb1e9c5a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745161051924
+status: 3
+tags: []
+user_id: RICH-1

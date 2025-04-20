@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/0/f5b527d9e2b84112aeb4f98c57ec5759/artifacts
+end_time: 1745156238442
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f5b527d9e2b84112aeb4f98c57ec5759
+run_name: popular-penguin-642
+run_uuid: f5b527d9e2b84112aeb4f98c57ec5759
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745156238406
+status: 4
+tags: []
+user_id: RICH-1
