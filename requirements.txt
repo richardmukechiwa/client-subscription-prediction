@@ -19,5 +19,6 @@ imblearn
 optuna
 black
 isort
+dagshub
 
 -e .
