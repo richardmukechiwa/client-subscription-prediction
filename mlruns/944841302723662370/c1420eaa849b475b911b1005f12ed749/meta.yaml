@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/944841302723662370/c1420eaa849b475b911b1005f12ed749/artifacts
+end_time: 1745173907795
+entry_point_name: ''
+experiment_id: '944841302723662370'
+lifecycle_stage: active
+run_id: c1420eaa849b475b911b1005f12ed749
+run_name: efficient-shark-955
+run_uuid: c1420eaa849b475b911b1005f12ed749
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745173902249
+status: 3
+tags: []
+user_id: RICH-1

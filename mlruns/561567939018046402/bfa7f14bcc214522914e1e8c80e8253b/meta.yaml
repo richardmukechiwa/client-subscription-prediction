@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/561567939018046402/bfa7f14bcc214522914e1e8c80e8253b/artifacts
+end_time: 1745271354463
+entry_point_name: ''
+experiment_id: '561567939018046402'
+lifecycle_stage: active
+run_id: bfa7f14bcc214522914e1e8c80e8253b
+run_name: brawny-squid-336
+run_uuid: bfa7f14bcc214522914e1e8c80e8253b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745271346588
+status: 3
+tags: []
+user_id: RICH-1

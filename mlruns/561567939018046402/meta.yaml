@@ -1,0 +1,6 @@
+artifact_location: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/561567939018046402
+creation_time: 1745271004912
+experiment_id: '561567939018046402'
+last_update_time: 1745271004912
+lifecycle_stage: active
+name: classification_with_SMOTE

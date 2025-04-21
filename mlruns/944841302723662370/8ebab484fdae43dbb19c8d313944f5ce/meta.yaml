@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/944841302723662370/8ebab484fdae43dbb19c8d313944f5ce/artifacts
+end_time: 1745272227599
+entry_point_name: ''
+experiment_id: '944841302723662370'
+lifecycle_stage: active
+run_id: 8ebab484fdae43dbb19c8d313944f5ce
+run_name: righteous-yak-861
+run_uuid: 8ebab484fdae43dbb19c8d313944f5ce
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745272221362
+status: 3
+tags: []
+user_id: RICH-1
