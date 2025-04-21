@@ -113,6 +113,7 @@ class ConfigurationManager:
             model_path=Path(config['model_path']),
             preprocessor_path = Path(config['preprocessor_path']),
             label_en= Path(config['label_en']),
+            sm_model = Path(config['sm_model']),
             all_params=params,
             metric_file_name=Path(config['metric_file_name']),
             target_column=schema.name,

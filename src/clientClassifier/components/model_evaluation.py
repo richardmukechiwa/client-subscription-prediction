@@ -38,14 +38,13 @@ class ModelEvaluation:
     def log_classification_report(self, actual, predicted, class_names):
         report = classification_report(actual, predicted, target_names=class_names)
         temp_txt_path = tempfile.NamedTemporaryFile(suffix=".txt", delete=False).name
-        with open(temp_txt_path, "w", encoding="utf-8") as f:
+        with open(temp_txt_path, "w") as f:
             f.write(report)
         mlflow.log_artifact(temp_txt_path, artifact_path="classification_report")
 
     def log_into_mlflow(self):
         test_data = pd.read_csv(self.config.test_data_path)
-        model = joblib.load(self.config.model_path)
-        processor = joblib.load(self.config.preprocessor_path)
+        model = joblib.load(self.config.sm_model)
         labelencoder1 = joblib.load(self.config.label_en)
 
         test_x = test_data.drop(self.config.target_column, axis=1)
@@ -54,19 +53,19 @@ class ModelEvaluation:
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         
-        mlflow.set_experiment("classification_baseline")
+        mlflow.set_experiment("classification_with_SMOTE")
         
 
         if mlflow.active_run():
             mlflow.end_run()
 
         with mlflow.start_run():
-            processing = processor.transform(test_x)
-            predicted_qualities = model.predict(processing)
+            #processing = model.transform(test_x)
+            predicted_qualities = model.predict(test_x)
 
             accuracy, precision, recall, f1 = self.eval_metrics(test_y, predicted_qualities)
 
-            model_name = "LogisticRegression"  # You can change this dynamically if needed
+            model_name = "LogisticRegressionwithSMOTE"  # You can change this dynamically if needed
 
             scores = {
                 "model_name": model_name,
@@ -88,6 +87,6 @@ class ModelEvaluation:
             self.log_classification_report(test_y, predicted_qualities, class_names)
 
             if tracking_url_type_store != "file":
-                mlflow.sklearn.log_model(model, "model", registered_model_name="ClassificationModel")
+                mlflow.sklearn.log_model(model, "model", registered_model_name="ClassificationSMOTEModel")
             else:
                 mlflow.sklearn.log_model(model, "model")

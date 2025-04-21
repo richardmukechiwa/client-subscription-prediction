@@ -62,3 +62,4 @@ class ModelEvaluationConfig:
     target_column: str
     mlflow_uri: str
     label_en: Path
+    sm_model: Path

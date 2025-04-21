@@ -43,4 +43,5 @@ model_evaluation:
   preprocessor_path: artifacts/model_trainer/preprocessor.joblib
   metric_file_name: artifacts/model_evaluation/metrics.json
   label_en: artifacts/model_trainer/label_encoder.joblib
+  sm_model: artifacts/model_trainer/sm_model_pipeline.joblib
 
