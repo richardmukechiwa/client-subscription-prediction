@@ -3,6 +3,17 @@ dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-predi
 
 import mlflow
 
+# Load train and test data
+train_data = pd.read_csv(self.config.train_data_path)
+test_data = pd.read_csv(self.config.test_data_path)
+
+# Separate features and target variable
+X_train = train_data.drop(columns=[self.config.target_column], axis=1)
+y_train = train_data[self.config.target_column]
+
+X_test = test_data.drop(columns=[self.config.target_column], axis=1)
+y_test = test_data[self.config.target_column]
+
 # Your metrics from model
 model_name = "random_forest"
 accuracy = 0.7535911602209945

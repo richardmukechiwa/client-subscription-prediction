@@ -44,4 +44,6 @@ model_evaluation:
   sm_model: artifacts/model_trainer/sm_model_pipeline.joblib
   rf_model: artifacts/model_trainer/rf_model.joblib
   rf_processor: artifacts/model_trainer/rf_preprocessor.joblib
+  xgb_model: artifacts/model_trainer/xgb_model.joblib
+  xgb_processor: artifacts/model_trainer/xgb_preprocessor.joblib
 

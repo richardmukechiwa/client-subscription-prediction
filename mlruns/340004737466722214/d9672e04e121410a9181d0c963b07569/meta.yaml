@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214/d9672e04e121410a9181d0c963b07569/artifacts
+end_time: 1745620110337
+entry_point_name: ''
+experiment_id: '340004737466722214'
+lifecycle_stage: active
+run_id: d9672e04e121410a9181d0c963b07569
+run_name: upbeat-bug-4
+run_uuid: d9672e04e121410a9181d0c963b07569
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745620106053
+status: 3
+tags: []
+user_id: RICH-1

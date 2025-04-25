@@ -7,6 +7,7 @@
         "optuna",
         "proprocessor",
         "Regressionwith",
+        "xgbclassifier",
         "xgboost",
         "xticklabels",
         "yticklabels"

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214/48b971ee3c4e46c18668321740edce40/artifacts
+end_time: 1745619992902
+entry_point_name: ''
+experiment_id: '340004737466722214'
+lifecycle_stage: active
+run_id: 48b971ee3c4e46c18668321740edce40
+run_name: sedate-midge-852
+run_uuid: 48b971ee3c4e46c18668321740edce40
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745619984530
+status: 3
+tags: []
+user_id: RICH-1
