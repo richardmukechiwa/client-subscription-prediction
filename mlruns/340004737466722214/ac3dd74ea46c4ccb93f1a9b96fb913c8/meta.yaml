@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214/ac3dd74ea46c4ccb93f1a9b96fb913c8/artifacts
+end_time: 1745356276795
+entry_point_name: ''
+experiment_id: '340004737466722214'
+lifecycle_stage: active
+run_id: ac3dd74ea46c4ccb93f1a9b96fb913c8
+run_name: marvelous-wasp-610
+run_uuid: ac3dd74ea46c4ccb93f1a9b96fb913c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745356271976
+status: 3
+tags: []
+user_id: RICH-1

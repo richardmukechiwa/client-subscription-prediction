@@ -4,14 +4,14 @@ dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-predi
 import mlflow
 
 # Your metrics from model
-model_name = "LogisticRegression"
-accuracy = 0.6762430939226519
-precision = 0.8398989283395172
-recall = 0.6762430939226519
-f1 = 0.7348829408102018
+model_name = "random_forest"
+accuracy = 0.7535911602209945
+precision = 0.8500484417714119
+recall = 0.7535911602209945
+f1 = 0.7909325678172326
 
 # Set experiment name
-mlflow.set_experiment("classification_baseline")
+mlflow.set_experiment("classification_with random forest")
 
 # End any existing run
 if mlflow.active_run():

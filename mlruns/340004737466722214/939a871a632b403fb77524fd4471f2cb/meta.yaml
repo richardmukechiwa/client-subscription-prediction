@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214/939a871a632b403fb77524fd4471f2cb/artifacts
+end_time: 1745355332127
+entry_point_name: ''
+experiment_id: '340004737466722214'
+lifecycle_stage: active
+run_id: 939a871a632b403fb77524fd4471f2cb
+run_name: persistent-moth-483
+run_uuid: 939a871a632b403fb77524fd4471f2cb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745355327082
+status: 3
+tags: []
+user_id: RICH-1

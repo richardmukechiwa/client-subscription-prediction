@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214/d8279ac06d93471199e0266ad8e48590/artifacts
+end_time: 1745355043609
+entry_point_name: ''
+experiment_id: '340004737466722214'
+lifecycle_stage: active
+run_id: d8279ac06d93471199e0266ad8e48590
+run_name: gaudy-zebra-450
+run_uuid: d8279ac06d93471199e0266ad8e48590
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745355037101
+status: 3
+tags: []
+user_id: RICH-1

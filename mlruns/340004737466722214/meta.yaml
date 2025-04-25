@@ -1,0 +1,6 @@
+artifact_location: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/340004737466722214
+creation_time: 1745355036935
+experiment_id: '340004737466722214'
+last_update_time: 1745355036935
+lifecycle_stage: active
+name: classification_with_random_forest

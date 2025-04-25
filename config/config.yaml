@@ -30,8 +30,6 @@ model_trainer:
   sm_processor_name: sm_preprocessor.joblib
   rf_model_name: rf_model.joblib
   rf_preprocessor_name: rf_preprocessor.joblib
-  rf_smote_model_name: rf_smote_model.joblib
-  rf_smote_preprocessor_name: rf_smote_preprocessor.joblib
   xgb_model_name: xgb_model.joblib
   xgb_preprocessor_name: xgb_preprocessor.joblib  
 
@@ -44,4 +42,6 @@ model_evaluation:
   metric_file_name: artifacts/model_evaluation/metrics.json
   label_en: artifacts/model_trainer/label_encoder.joblib
   sm_model: artifacts/model_trainer/sm_model_pipeline.joblib
+  rf_model: artifacts/model_trainer/rf_model.joblib
+  rf_processor: artifacts/model_trainer/rf_preprocessor.joblib
 
