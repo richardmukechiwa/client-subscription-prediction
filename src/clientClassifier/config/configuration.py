@@ -70,7 +70,7 @@ class ConfigurationManager:
     
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer     
-        params = self.params.Logistic_Regression
+        params = self.params.xgb_classifier
         schema = self.schema.TARGET_COLUMN
         
         
@@ -89,12 +89,15 @@ class ConfigurationManager:
             sm_model_name=config.sm_model_name,
             sm_processor_name=config.sm_processor_name,
             target_column=schema.name,
-            class_weight=params.class_weight,
-            max_iter=params.max_iter,
-            penalty=params.penalty,
-            C=params.C,
-            solver=params.solver,
-            random_state=params.random_state
+            max_depth = params.max_depth,
+            #class_weight=params.class_weight,
+            n_estimators= params.n_estimators,
+            random_state=params.random_state,
+            rf_model_name   = config.rf_model_name,
+            rf_preprocessor_name=config.rf_preprocessor_name,
+            xgb_model_name=config.xgb_model_name,
+            xgb_preprocessor_name=config.xgb_preprocessor_name
+           
         )
 
         return model_trainer_config
@@ -102,7 +105,7 @@ class ConfigurationManager:
     
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config['model_evaluation']
-        params = self.params['Logistic_Regression']
+        params = self.params['xgb_classifier']
         schema = self.schema['TARGET_COLUMN']
         
         create_directories([config['root_dir']])
@@ -111,9 +114,13 @@ class ConfigurationManager:
             root_dir=Path(config['root_dir']),
             test_data_path=Path(config['test_data_path']),
             model_path=Path(config['model_path']),
+            rf_model = Path(config['rf_model']),
+            rf_processor  = Path(config['rf_processor']),
             preprocessor_path = Path(config['preprocessor_path']),
-            label_en= Path(config['label_en']),
+            xgb_encoder= Path(config['xgb_encoder']),
+            xgb_model= Path(config['xgb_model']),   
             sm_model = Path(config['sm_model']),
+            xgb_processor = Path(config['xgb_processor']),  
             all_params=params,
             metric_file_name=Path(config['metric_file_name']),
             target_column=schema.name,
@@ -121,4 +128,3 @@ class ConfigurationManager:
         )
         
         return model_evaluation_config
-    

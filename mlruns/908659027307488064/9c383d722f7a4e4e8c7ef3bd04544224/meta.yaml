@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064/9c383d722f7a4e4e8c7ef3bd04544224/artifacts
+end_time: 1745671728239
+entry_point_name: ''
+experiment_id: '908659027307488064'
+lifecycle_stage: active
+run_id: 9c383d722f7a4e4e8c7ef3bd04544224
+run_name: bemused-jay-207
+run_uuid: 9c383d722f7a4e4e8c7ef3bd04544224
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745671720366
+status: 3
+tags: []
+user_id: RICH-1

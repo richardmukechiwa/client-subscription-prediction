@@ -40,20 +40,26 @@ class ModelEvaluation:
         temp_txt_path = tempfile.NamedTemporaryFile(suffix=".txt", delete=False).name
         with open(temp_txt_path, "w") as f:
             f.write(report)
-        mlflow.log_artifact(temp_txt_path, artifact_path="classification_report")
+        mlflow.log_artifact(temp_txt_path, artifact_path="xgb_classification_report")
 
     def log_into_mlflow(self):
         test_data = pd.read_csv(self.config.test_data_path)
-        model = joblib.load(self.config.sm_model)
-        labelencoder1 = joblib.load(self.config.label_en)
+        
+        model = joblib.load(self.config.xgb_model)
+        processor = joblib.load(self.config.xgb_processor)
+        encoder = joblib.load(self.config.xgb_encoder)
+    
 
         test_x = test_data.drop(self.config.target_column, axis=1)
         test_y = test_data[self.config.target_column]
-        test_y = labelencoder1.transform(test_y)  # transform only, not fit_transform
+        
+        #label encoding the target variable
+        test_y = encoder.transform(test_y)
+        
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         
-        mlflow.set_experiment("classification_with_SMOTE")
+        mlflow.set_experiment("classification_with_xgbclassifier")
         
 
         if mlflow.active_run():
@@ -61,11 +67,12 @@ class ModelEvaluation:
 
         with mlflow.start_run():
             #processing = model.transform(test_x)
-            predicted_qualities = model.predict(test_x)
+            processed = processor.transform(test_x)
+            predicted_qualities = model.predict(processed)
 
             accuracy, precision, recall, f1 = self.eval_metrics(test_y, predicted_qualities)
 
-            model_name = "LogisticRegressionwithSMOTE"  # You can change this dynamically if needed
+            model_name = "xgb_classifier" 
 
             scores = {
                 "model_name": model_name,
@@ -82,11 +89,11 @@ class ModelEvaluation:
             mlflow.log_metric("recall", recall)
             mlflow.log_metric("f1_score", f1)
 
-            class_names = labelencoder1.classes_
+            class_names =encoder.classes_
             self.log_confusion_matrix(test_y, predicted_qualities, class_names)
             self.log_classification_report(test_y, predicted_qualities, class_names)
 
             if tracking_url_type_store != "file":
-                mlflow.sklearn.log_model(model, "model", registered_model_name="ClassificationSMOTEModel")
+                mlflow.sklearn.log_model(model, "model", registered_model_name="XGB ClassificationModel")
             else:
                 mlflow.sklearn.log_model(model, "model")

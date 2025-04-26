@@ -3,26 +3,15 @@ dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-predi
 
 import mlflow
 
-# Load train and test data
-train_data = pd.read_csv(self.config.train_data_path)
-test_data = pd.read_csv(self.config.test_data_path)
-
-# Separate features and target variable
-X_train = train_data.drop(columns=[self.config.target_column], axis=1)
-y_train = train_data[self.config.target_column]
-
-X_test = test_data.drop(columns=[self.config.target_column], axis=1)
-y_test = test_data[self.config.target_column]
-
-# Your metrics from model
-model_name = "random_forest"
-accuracy = 0.7535911602209945
-precision = 0.8500484417714119
-recall = 0.7535911602209945
-f1 = 0.7909325678172326
+# metrics from model
+model_name = "xgb_classifier"
+accuracy = 0.8209944751381215
+precision = 0.8525007003855971
+recall = 0.8209944751381215
+f1_score = 0.83489495724390
 
 # Set experiment name
-mlflow.set_experiment("classification_with random forest")
+mlflow.set_experiment("classification_with xgb_classifier")
 
 # End any existing run
 if mlflow.active_run():
@@ -34,4 +23,4 @@ with mlflow.start_run(run_name=model_name):
     mlflow.log_metric("accuracy", accuracy)
     mlflow.log_metric("precision", precision)
     mlflow.log_metric("recall", recall)
-    mlflow.log_metric("f1_score", f1)
+    mlflow.log_metric("f1_score", f1_score)

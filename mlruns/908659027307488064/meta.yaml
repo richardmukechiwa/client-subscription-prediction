@@ -1,0 +1,6 @@
+artifact_location: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064
+creation_time: 1745671720106
+experiment_id: '908659027307488064'
+last_update_time: 1745671720106
+lifecycle_stage: active
+name: classification_with_xgbclassifier

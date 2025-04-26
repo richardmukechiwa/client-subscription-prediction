@@ -42,24 +42,29 @@ class ModelTrainerConfig:
     sm_model_name: str
     sm_processor_name: str
     target_column: str
-    class_weight: str
-    C: float
     random_state: int
-    max_iter: int
-    penalty: str
-    solver: str
+    max_depth: int
+    n_estimators: int
     sm_model_pipeline_name: str
+    rf_model_name: str
+    rf_preprocessor_name: str
+    xgb_model_name: str
+    xgb_preprocessor_name: str
 
 
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
-    root_dir: Path
+    root_dir : Path
     test_data_path: Path
     model_path: Path
-    preprocessor_path: Path
-    all_params: dict
+    preprocessor_path : Path
+    all_params : dict
     metric_file_name: Path
     target_column: str
     mlflow_uri: str
-    label_en: Path
+    xgb_encoder: Path
     sm_model: Path
+    rf_model: Path
+    rf_processor: Path
+    xgb_processor: Path
+    xgb_model: Path

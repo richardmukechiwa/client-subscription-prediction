@@ -3,131 +3,30 @@ import os
 import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
-from imblearn.over_sampling import SMOTE
-from imblearn.pipeline import Pipeline as ImbPipeline
+
+
 from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
+from xgboost import XGBClassifier
+import numpy as np
 from sklearn.metrics import (
     ConfusionMatrixDisplay,
     accuracy_score,
     classification_report,
     confusion_matrix,
 )
-from sklearn.pipeline import Pipeline
+
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 
 from clientClassifier import logger
 from clientClassifier.entity.config_entity import ModelTrainerConfig
 
-
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
         self.config = config
 
-    def train(self):
-        logger.info("Training model")
 
-        # Load train and test data
-        train_data = pd.read_csv(self.config.train_data_path)
-        test_data = pd.read_csv(self.config.test_data_path)
-
-        # Separate features and target variable
-        X_train = train_data.drop(columns=[self.config.target_column], axis=1)
-        y_train = train_data[self.config.target_column]
-
-        X_test = test_data.drop(columns=[self.config.target_column], axis=1)
-        y_test = test_data[self.config.target_column]
-
-        # Identify numerical and categorical feature columns
-        numerical_features = X_train.select_dtypes(
-            include=["int64", "float64"]
-        ).columns.tolist()
-        categorical_features = X_train.select_dtypes(
-            include=["object"]
-        ).columns.tolist()
-
-        # Apply Label Encoding to target variable
-        label_encoder = LabelEncoder()
-        y_train = label_encoder.fit_transform(y_train)
-        y_test = label_encoder.transform(y_test)
-
-        # Preprocessing for features
-        numerical_transformer = StandardScaler()
-        categorical_transformer = OneHotEncoder(handle_unknown="ignore")
-
-        preprocessor = ColumnTransformer(
-            transformers=[
-                ("num", numerical_transformer, numerical_features),
-                ("cat", categorical_transformer, categorical_features),
-            ]
-        )
-
-        # Now you can fit a model using preprocessor and encoded targets
-
-        logger.info("Preprocessing and label encoding complete")
-
-        # create a pipeline with preprocessing and model
-        pipeline = Pipeline(
-            [
-                ("preprocessor", preprocessor),
-                (
-                    "classifier",
-                    LogisticRegression(
-                        class_weight=self.config.class_weight,
-                        max_iter=self.config.max_iter,
-                        penalty=self.config.penalty,
-                        C=self.config.C,
-                        solver=self.config.solver,
-                        random_state=self.config.random_state,
-                    ),
-                ),
-            ]
-        )
-
-        # fit the pipeline on the training data
-        pipeline.fit(X_train, y_train)
-
-        # make predictions on the test data
-        y_pred = pipeline.predict(X_test)
-
-        # evaluate the model
-        report = classification_report(y_test, y_pred)
-        cm = confusion_matrix(y_test, y_pred)
-        accuracy = accuracy_score(y_test, y_pred)
-
-        # create Confusion Matrix Display
-        disp = ConfusionMatrixDisplay(
-            confusion_matrix=cm, display_labels=label_encoder.classes_
-        )
-        disp.plot()
-        plt.title("Logistic Regression Matrix without SMOTE")
-        plt.show()
-
-        logger.info(f"Classification Report:\n{report}")
-        logger.info(f"Confusion Matrix:\n{cm}")
-        logger.info(f"Accuracy: {accuracy}")
-
-        # save the model
-
-        model = pipeline.named_steps["classifier"]
-        preprocessor = pipeline.named_steps["preprocessor"]
-
-        model_path = os.path.join(self.config.root_dir, self.config.model_name)
-        preprocessor_path = os.path.join(
-            self.config.root_dir, self.config.preprocessor_name
-        )
-        joblib.dump(preprocessor, preprocessor_path)
-        joblib.dump(model, model_path)
-        joblib.dump(
-            label_encoder,
-            os.path.join(self.config.root_dir, self.config.label_encoder_names),
-        )
-
-        logger.info(f"Model saved at: {model_path}")
-        logger.info(f"Preprocessor saved at: {preprocessor_path}")
-
-    def train_with_SMOTE(self):
-        logger.info("Training model with SMOTE")
+    def train_XGBClassifier(self):
+        logger.info("Training XGBoost model")
 
         # Load data
         train_data = pd.read_csv(self.config.train_data_path)
@@ -139,74 +38,76 @@ class ModelTrainer:
 
         X_test = test_data.drop(columns=[self.config.target_column])
         y_test = test_data[self.config.target_column]
-
+        
+        
         # Apply Label Encoding to target variable
         label_encoder = LabelEncoder()
         y_train = label_encoder.fit_transform(y_train)
         y_test = label_encoder.transform(y_test)
+        
+
+
+        # calculating "scale_pos_weight"
+        neg = np.sum(y_train == 0)  # count of negative class
+        pos = np.sum(y_train == 1)  # count of positive class
+
+        scale_pos_weight = neg / pos
+        print(f"scale_pos_weight = {scale_pos_weight:.2f}")
+        
+        
+
 
         # Define numerical and categorical features
-        numerical_features = X_train.select_dtypes(
-            include=["int64", "float64"]
-        ).columns.tolist()
-        categorical_features = X_train.select_dtypes(
-            include=["object"]
-        ).columns.tolist()
+        numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
+        categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
 
         # Transformers
         numerical_transformer = StandardScaler()
-        categorical_transformer = OneHotEncoder(handle_unknown="ignore")
+        categorical_transformer = OneHotEncoder(handle_unknown='ignore')
 
-        sm_preprocessor = ColumnTransformer(
+        xgb_preprocessor = ColumnTransformer(
             transformers=[
-                ("num", numerical_transformer, numerical_features),
-                ("cat", categorical_transformer, categorical_features),
+                ('num', numerical_transformer, numerical_features),
+                ('cat', categorical_transformer, categorical_features)
             ]
         )
 
-        #  Fitting model on resampled data
-        model = LogisticRegression(
-            class_weight=self.config.class_weight,
-            max_iter=self.config.max_iter,
-            penalty=self.config.penalty,
-            C=self.config.C,
-            solver=self.config.solver,
-            random_state=self.config.random_state,
-        )
+        # Preprocess X_train using fit_transform (fit only on training data)
+        X_train_processed = xgb_preprocessor.fit_transform(X_train)
 
-        # use the sm_pipeline to transform the data
-        sm_pipeline = ImbPipeline(
-            [
-                ("preprocessor", sm_preprocessor),
-                ("smote", SMOTE(random_state=self.config.random_state)),
-                ("classifier", model),
-            ]
-        )
+        # Fitting XGBoost model on the processed data
+        xgb_model = XGBClassifier(random_state=self.config.random_state,
+                                    n_estimators=self.config.n_estimators,
+                                    max_depth=self.config.max_depth,
+                                    scale_pos_weight=scale_pos_weight)
+        
+            
+        xgb_model.fit(X_train_processed, y_train)
 
-        sm_pipeline.fit(X_train, y_train)
-
-        # make predictions on the test data
-        y_pred = sm_pipeline.predict(X_test)
+        # make predictions on the test data 
+        X_test_processed = xgb_preprocessor.transform(X_test)
+        y_pred_xgb = xgb_model.predict(X_test_processed)
 
         # evaluate the model
-        resampled_report = classification_report(y_test, y_pred)
-        resampled_cm = confusion_matrix(y_test, y_pred)
-        resampled_accuracy = accuracy_score(y_test, y_pred)
-
-        # create Confusion Matrix Display
-        cm_display = ConfusionMatrixDisplay(
-            confusion_matrix=resampled_cm, display_labels=label_encoder.classes_
-        )
+        xgb_report = classification_report(y_test, y_pred_xgb)
+        xgb_cm = confusion_matrix(y_test, y_pred_xgb)   
+        xgb_accuracy = accuracy_score(y_test, y_pred_xgb)   
+        
+        #create Confusion Matrix Display
+        cm_display = ConfusionMatrixDisplay(confusion_matrix=xgb_cm, display_labels=label_encoder.classes_)
         cm_display.plot()
-        plt.title("Logistic Regression with Matrix SMOTE")
-        plt.show()
+        plt.title("XGBClassifier Matrix")
 
-        logger.info(f"Classification Report:\n{resampled_report}")
-        logger.info(f"Confusion Matrix:\n{resampled_cm}")
-        logger.info(f"Accuracy: {resampled_accuracy}")
-
-        # Save the model and preprocessor
-        joblib.dump(
-            sm_pipeline,
-            os.path.join(self.config.root_dir, self.config.sm_model_pipeline_name),
-        )
+        logger.info(f"XGBoost Classification Report:\n{xgb_report}")
+        logger.info(f"XGBoost Confusion Matrix:\n{xgb_cm}") 
+        logger.info(f"XGBoost Accuracy: {xgb_accuracy}")
+        
+        # save the model
+        xgb_label_path = os.path.join(self.config.root_dir, self.config.label_encoder_names )
+        xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_model_name)   
+        xgb_preprocessor_path = os.path.join(self.config.root_dir, self.config.xgb_preprocessor_name)
+        
+        joblib.dump(label_encoder, xgb_label_path)
+        joblib.dump(xgb_model, xgb_model_path)
+        joblib.dump(xgb_preprocessor, xgb_preprocessor_path)
+        return xgb_report, xgb_cm, xgb_accuracy
