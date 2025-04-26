@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064/7d0aafe1ee6240189d07c119af78e297/artifacts
+end_time: 1745677684542
+entry_point_name: ''
+experiment_id: '908659027307488064'
+lifecycle_stage: active
+run_id: 7d0aafe1ee6240189d07c119af78e297
+run_name: angry-mule-125
+run_uuid: 7d0aafe1ee6240189d07c119af78e297
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745677679002
+status: 3
+tags: []
+user_id: RICH-1

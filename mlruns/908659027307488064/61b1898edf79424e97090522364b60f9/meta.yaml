@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064/61b1898edf79424e97090522364b60f9/artifacts
+end_time: 1745676954745
+entry_point_name: ''
+experiment_id: '908659027307488064'
+lifecycle_stage: active
+run_id: 61b1898edf79424e97090522364b60f9
+run_name: intelligent-koi-39
+run_uuid: 61b1898edf79424e97090522364b60f9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745676949783
+status: 3
+tags: []
+user_id: RICH-1

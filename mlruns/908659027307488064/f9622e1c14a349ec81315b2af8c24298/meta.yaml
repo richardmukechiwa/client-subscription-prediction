@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064/f9622e1c14a349ec81315b2af8c24298/artifacts
+end_time: 1745677773417
+entry_point_name: ''
+experiment_id: '908659027307488064'
+lifecycle_stage: active
+run_id: f9622e1c14a349ec81315b2af8c24298
+run_name: fearless-shrike-665
+run_uuid: f9622e1c14a349ec81315b2af8c24298
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745677768903
+status: 3
+tags: []
+user_id: RICH-1
