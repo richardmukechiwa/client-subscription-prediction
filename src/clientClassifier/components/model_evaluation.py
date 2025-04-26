@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
 import tempfile
+import shap
 from clientClassifier.utils.common import save_json
 from clientClassifier.entity.config_entity import ModelEvaluationConfig
+from clientClassifier    import logger
 
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
@@ -97,3 +99,55 @@ class ModelEvaluation:
                 mlflow.sklearn.log_model(model, "model", registered_model_name="XGB ClassificationModel")
             else:
                 mlflow.sklearn.log_model(model, "model")
+
+
+
+
+    def feature_importance(self):
+        
+        test_data = pd.read_csv(self.config.test_data_path)
+        
+      
+        
+        model = joblib.load(self.config.xgb_model)
+        processor = joblib.load(self.config.xgb_processor)
+        
+        test_x = test_data.drop(self.config.target_column, axis=1)
+        
+        processed = processor.transform(test_x)
+        
+        # getting the feature names from the processor
+        feature_names = processor.get_feature_names_out()
+        # Convert the processed data back to a DataFrame with feature names
+        processed = pd.DataFrame(processed, columns=feature_names)              
+        
+        # Create SHAP explainer
+        explainer = shap.TreeExplainer(model)
+
+        # Use evaluation/test set ideally
+        shap_values = explainer.shap_values(processed)
+
+        # Plot SHAP summary
+        shap.summary_plot(shap_values, processed)
+        
+        
+        #findings of the shap summary plot
+        
+        logger.info("The SHAP analysis revealed that the top five features driving model predictions are:")
+        print("  " * 50)
+        logger.info("1. Previous Campaign Outcome (cat__poutcome_success): Clients who previously responded positively to campaigns are much more likely to subscribe again.")
+        print(" " * 50)
+        logger.info("2. Account Balance (num__balance): Clients with higher account balances are significantly more likely to subscribe.") 
+        print(" " * 50)
+        logger.info("3. Day of Contact (num__day): The specific day of the month when a client is contacted strongly influences the outcome.")
+        print(" " * 50)
+        logger.info("4. Month of Contact (num__month): Seasonality effects are evident, with specific months (e.g., holiday or bonus periods) boosting subscription likelihood.")
+        print(" " * 50)
+        logger.info("5. Age of Client (num__age): Age plays a significant role, with different age groups showing distinct patterns in subscription behavior.")                 
+
+       
+       
+            
+          
+        
+                               

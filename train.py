@@ -4,14 +4,15 @@ dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-predi
 import mlflow
 
 # metrics from model
-model_name = "xgb_classifier"
+model_name = "xgb_classifier_artifacts"
 accuracy = 0.8209944751381215
 precision = 0.8525007003855971
 recall = 0.8209944751381215
 f1_score = 0.83489495724390
 
+
 # Set experiment name
-mlflow.set_experiment("classification_with xgb_classifier")
+mlflow.set_experiment("classification_with xgb_classifier_artifacts")
 
 # End any existing run
 if mlflow.active_run():
@@ -19,6 +20,7 @@ if mlflow.active_run():
 
 # Start a new MLflow run
 with mlflow.start_run(run_name=model_name):
+    mlflow.log_artifacts("")
     mlflow.log_param("model", model_name)  # Logs model name as a parameter
     mlflow.log_metric("accuracy", accuracy)
     mlflow.log_metric("precision", precision)
