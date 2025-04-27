@@ -13,7 +13,7 @@ class ModelTrainerTrainingPipeline:
         config = ConfigurationManager()
         model_trainer_config = config.get_model_trainer_config()
         model_trainer = ModelTrainer(model_trainer_config)
-        model_trainer.train_XGBClassifier()  
+        model_trainer.train_selected_features()  
 
 
 if __name__ == "__main__":

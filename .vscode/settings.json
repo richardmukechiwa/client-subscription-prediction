@@ -1,10 +1,14 @@
 {
     "cSpell.words": [
+        "bytree",
+        "colsample",
         "disp",
         "fontsize",
         "isort",
         "labelencoder",
+        "logloss",
         "optuna",
+        "preds",
         "proprocessor",
         "Regressionwith",
         "xgbclassifier",

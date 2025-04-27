@@ -4,6 +4,7 @@ import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 
+import optuna
 
 from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
@@ -25,8 +26,8 @@ class ModelTrainer:
         self.config = config
 
 
-    def train_XGBClassifier(self):
-        logger.info("Training XGBoost model")
+    def train_selected_features(self):
+        logger.info("Training XGBClassifier model on selected features")
 
         # Load data
         train_data = pd.read_csv(self.config.train_data_path)
@@ -35,33 +36,28 @@ class ModelTrainer:
         # Separate features and target
         X_train = train_data.drop(columns=[self.config.target_column])
         y_train = train_data[self.config.target_column]
+        
+        important_features = ['age', 'month', 'day', 'balance', 'poutcome']
+        X_train = X_train[important_features]
 
-        X_test = test_data.drop(columns=[self.config.target_column])
+        #X_test = test_data.drop(columns=[self.config.target_column])
         y_test = test_data[self.config.target_column]
         
-        
-        # Apply Label Encoding to target variable
+        # Label Encoding
         label_encoder = LabelEncoder()
         y_train = label_encoder.fit_transform(y_train)
         y_test = label_encoder.transform(y_test)
         
-
-
-        # calculating "scale_pos_weight"
-        neg = np.sum(y_train == 0)  # count of negative class
-        pos = np.sum(y_train == 1)  # count of positive class
-
+        # Scale Pos Weight
+        neg = np.sum(y_train == 0)
+        pos = np.sum(y_train == 1)
         scale_pos_weight = neg / pos
         print(f"scale_pos_weight = {scale_pos_weight:.2f}")
-        
-        
 
-
-        # Define numerical and categorical features
+        # Preprocessing
         numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
         categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
 
-        # Transformers
         numerical_transformer = StandardScaler()
         categorical_transformer = OneHotEncoder(handle_unknown='ignore')
 
@@ -72,42 +68,59 @@ class ModelTrainer:
             ]
         )
 
-        # Preprocess X_train using fit_transform (fit only on training data)
+        # Preprocess
         X_train_processed = xgb_preprocessor.fit_transform(X_train)
 
-        # Fitting XGBoost model on the processed data
-        xgb_model = XGBClassifier(random_state=self.config.random_state,
-                                    n_estimators=self.config.n_estimators,
-                                    max_depth=self.config.max_depth,
-                                    scale_pos_weight=scale_pos_weight)
-        
+        #  Define Optuna objective function
+        def objective(trial):
+            params = {
+                'n_estimators': trial.suggest_int('n_estimators', 50, 500),
+                'max_depth': trial.suggest_int('max_depth', 2, 20),
+                'learning_rate': trial.suggest_float('learning_rate', 0.001, 0.3, log=True),
+                'subsample': trial.suggest_float('subsample', 0.5, 1.0),
+                'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),
+                'gamma': trial.suggest_float('gamma', 0, 5),
+                'reg_alpha': trial.suggest_float('reg_alpha', 0, 5),
+                'reg_lambda': trial.suggest_float('reg_lambda', 0, 5),
+                'scale_pos_weight': scale_pos_weight,
+                'random_state': self.config.random_state,
+                
+            }
             
-        xgb_model.fit(X_train_processed, y_train)
+            model = XGBClassifier(**params)
+            model.fit(X_train_processed, y_train)
 
-        # make predictions on the test data 
-        X_test_processed = xgb_preprocessor.transform(X_test)
-        y_pred_xgb = xgb_model.predict(X_test_processed)
+            preds = model.predict(X_train_processed)  
+            acc = accuracy_score(y_train, preds)
+            
+            return acc  # maximized accuracy
 
-        # evaluate the model
-        xgb_report = classification_report(y_test, y_pred_xgb)
-        xgb_cm = confusion_matrix(y_test, y_pred_xgb)   
-        xgb_accuracy = accuracy_score(y_test, y_pred_xgb)   
+        # Create Optuna study
+        study = optuna.create_study(direction="maximize", study_name="xgb_selected_features_optimization")
+        study.optimize(objective, n_trials=30)  
+
+        print("Best parameters:", study.best_params)
+
+        # Train final model with best parameters
+        best_params = study.best_params
+        best_params.update({
+            'scale_pos_weight': scale_pos_weight,
+            'random_state': self.config.random_state,
+           
+            'eval_metric': 'logloss'
+        })
+
+        final_model = XGBClassifier(**best_params)
+        final_model.fit(X_train_processed, y_train)
         
-        #create Confusion Matrix Display
-        cm_display = ConfusionMatrixDisplay(confusion_matrix=xgb_cm, display_labels=label_encoder.classes_)
-        cm_display.plot()
-        plt.title("XGBClassifier Matrix")
-
-        logger.info(f"XGBoost Classification Report:\n{xgb_report}")
-        logger.info(f"XGBoost Confusion Matrix:\n{xgb_cm}") 
-        logger.info(f"XGBoost Accuracy: {xgb_accuracy}")
         
-        # save the model
+        # Save everything
         xgb_label_path = os.path.join(self.config.root_dir, self.config.label_encoder_names )
-        xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_model_name)   
+        xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_selected)   
         xgb_preprocessor_path = os.path.join(self.config.root_dir, self.config.xgb_preprocessor_name)
-        
+
         joblib.dump(label_encoder, xgb_label_path)
-        joblib.dump(xgb_model, xgb_model_path)
+        joblib.dump(final_model, xgb_model_path)
         joblib.dump(xgb_preprocessor, xgb_preprocessor_path)
-        return xgb_report, xgb_cm, xgb_accuracy
+
+        logger.info("Training completed and artifacts saved!")

@@ -90,13 +90,13 @@ class ConfigurationManager:
             sm_processor_name=config.sm_processor_name,
             target_column=schema.name,
             max_depth = params.max_depth,
-            #class_weight=params.class_weight,
             n_estimators= params.n_estimators,
             random_state=params.random_state,
             rf_model_name   = config.rf_model_name,
             rf_preprocessor_name=config.rf_preprocessor_name,
             xgb_model_name=config.xgb_model_name,
-            xgb_preprocessor_name=config.xgb_preprocessor_name
+            xgb_preprocessor_name=config.xgb_preprocessor_name,
+            xgb_selected=config.xgb_selected
            
         )
 
@@ -105,7 +105,7 @@ class ConfigurationManager:
     
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config['model_evaluation']
-        params = self.params['xgb_classifier']
+        params = self.params['xgb_classifier_best']
         schema = self.schema['TARGET_COLUMN']
         
         create_directories([config['root_dir']])
@@ -123,6 +123,7 @@ class ConfigurationManager:
             xgb_processor = Path(config['xgb_processor']),  
             all_params=params,
             metric_file_name=Path(config['metric_file_name']),
+            xgb_final_model=Path(config['xgb_final_model']),
             target_column=schema.name,
             mlflow_uri="https://dagshub.com/richardmukechiwa/client-subscription-prediction.mlflow"
         )

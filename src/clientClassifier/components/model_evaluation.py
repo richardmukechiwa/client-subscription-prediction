@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, recall_score, f1_score, ConfusionMatrixDisplay
 from urllib.parse import urlparse
 import joblib
 import mlflow 
@@ -16,6 +16,9 @@ class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
 
+    
+       
+    #Evaluation and mlflow  on selected features
     def eval_metrics(self, actual, pred):
         accuracy = accuracy_score(actual, pred)
         precision = precision_score(actual, pred, average='weighted')
@@ -44,10 +47,10 @@ class ModelEvaluation:
             f.write(report)
         mlflow.log_artifact(temp_txt_path, artifact_path="xgb_classification_report")
 
-    def log_into_mlflow(self):
+    def log_selected_features_into_mlflow(self):
         test_data = pd.read_csv(self.config.test_data_path)
         
-        model = joblib.load(self.config.xgb_model)
+        model = joblib.load(self.config.xgb_final_model)
         processor = joblib.load(self.config.xgb_processor)
         encoder = joblib.load(self.config.xgb_encoder)
     
@@ -55,13 +58,19 @@ class ModelEvaluation:
         test_x = test_data.drop(self.config.target_column, axis=1)
         test_y = test_data[self.config.target_column]
         
+        
+        #introduce selected features
+        important_features = ['age', 'month', 'day', 'balance', 'poutcome']
+        
+        test_x  = test_x[important_features]
+        
         #label encoding the target variable
         test_y = encoder.transform(test_y)
         
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         
-        mlflow.set_experiment("classification_with_xgbclassifier")
+        mlflow.set_experiment("classification_with_xgbclassifier_on_selected_features")
         
 
         if mlflow.active_run():
@@ -71,10 +80,28 @@ class ModelEvaluation:
             #processing = model.transform(test_x)
             processed = processor.transform(test_x)
             predicted_qualities = model.predict(processed)
-
+            
+            
             accuracy, precision, recall, f1 = self.eval_metrics(test_y, predicted_qualities)
+            
+            # evaluate the model
+            xgb_report = classification_report(test_y, predicted_qualities)
+            xgb_cm = confusion_matrix(test_y, predicted_qualities)   
+            xgb_accuracy = accuracy_score(test_y, predicted_qualities)   
+            
+            #create Confusion Matrix Display
+            cm_display = ConfusionMatrixDisplay(confusion_matrix=xgb_cm, display_labels=encoder.classes_)
+            cm_display.plot()
+            plt.title("XGBClassifier Matrix")
 
-            model_name = "xgb_classifier" 
+            logger.info(f"XGBoost Classification Report:\n{xgb_report}")
+            logger.info(f"XGBoost Confusion Matrix:\n{xgb_cm}") 
+            logger.info(f"XGBoost Accuracy: {xgb_accuracy}")
+            
+            
+           
+
+            model_name = "xgb_classifier_best" 
 
             scores = {
                 "model_name": model_name,
@@ -99,54 +126,9 @@ class ModelEvaluation:
                 mlflow.sklearn.log_model(model, "model", registered_model_name="XGB ClassificationModel")
             else:
                 mlflow.sklearn.log_model(model, "model")
-
-
-
-
-    def feature_importance(self):
-        
-        test_data = pd.read_csv(self.config.test_data_path)
-        
-      
-        
-        model = joblib.load(self.config.xgb_model)
-        processor = joblib.load(self.config.xgb_processor)
-        
-        test_x = test_data.drop(self.config.target_column, axis=1)
-        
-        processed = processor.transform(test_x)
-        
-        # getting the feature names from the processor
-        feature_names = processor.get_feature_names_out()
-        # Convert the processed data back to a DataFrame with feature names
-        processed = pd.DataFrame(processed, columns=feature_names)              
-        
-        # Create SHAP explainer
-        explainer = shap.TreeExplainer(model)
-
-        # Use evaluation/test set ideally
-        shap_values = explainer.shap_values(processed)
-
-        # Plot SHAP summary
-        shap.summary_plot(shap_values, processed)
-        
-        
-        #findings of the shap summary plot
-        
-        logger.info("The SHAP analysis revealed that the top five features driving model predictions are:")
-        print("  " * 50)
-        logger.info("1. Previous Campaign Outcome (cat__poutcome_success): Clients who previously responded positively to campaigns are much more likely to subscribe again.")
-        print(" " * 50)
-        logger.info("2. Account Balance (num__balance): Clients with higher account balances are significantly more likely to subscribe.") 
-        print(" " * 50)
-        logger.info("3. Day of Contact (num__day): The specific day of the month when a client is contacted strongly influences the outcome.")
-        print(" " * 50)
-        logger.info("4. Month of Contact (num__month): Seasonality effects are evident, with specific months (e.g., holiday or bonus periods) boosting subscription likelihood.")
-        print(" " * 50)
-        logger.info("5. Age of Client (num__age): Age plays a significant role, with different age groups showing distinct patterns in subscription behavior.")                 
-
-       
-       
+                
+   
+            return xgb_report, xgb_cm, xgb_accuracy
             
           
         

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/908659027307488064/e137e43160d049d884dd9715a2752f46/artifacts
+end_time: 1745697973779
+entry_point_name: ''
+experiment_id: '908659027307488064'
+lifecycle_stage: active
+run_id: e137e43160d049d884dd9715a2752f46
+run_name: suave-gnat-341
+run_uuid: e137e43160d049d884dd9715a2752f46
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745697968719
+status: 3
+tags: []
+user_id: RICH-1

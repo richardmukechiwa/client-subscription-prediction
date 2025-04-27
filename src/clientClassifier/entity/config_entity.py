@@ -50,6 +50,7 @@ class ModelTrainerConfig:
     rf_preprocessor_name: str
     xgb_model_name: str
     xgb_preprocessor_name: str
+    xgb_selected: str
 
 
 @dataclass(frozen=True)
@@ -68,3 +69,4 @@ class ModelEvaluationConfig:
     rf_processor: Path
     xgb_processor: Path
     xgb_model: Path
+    xgb_final_model: Path
