@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/aa0a29a5d96143378206c98981728c56/artifacts
+end_time: 1745866345173
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: aa0a29a5d96143378206c98981728c56
+run_name: brawny-vole-53
+run_uuid: aa0a29a5d96143378206c98981728c56
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745866329046
+status: 3
+tags: []
+user_id: RICH-1

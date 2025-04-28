@@ -4,11 +4,11 @@ dagshub.init(repo_owner='richardmukechiwa', repo_name='client-subscription-predi
 import mlflow
 
 # metrics from model
-model_name = "xgb_classifier_artifacts"
-accuracy = 0.8209944751381215
-precision = 0.8525007003855971
-recall = 0.8209944751381215
-f1_score = 0.83489495724390
+model_name = "xgb_classifier_best"  
+accuracy = 0.8552486187845304
+precision = 0.86349882593394
+recall = 0.8552486187845304
+f1_score =  0.859162770816417
 
 
 # Set experiment name

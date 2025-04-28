@@ -70,7 +70,7 @@ class ConfigurationManager:
     
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer     
-        params = self.params.xgb_classifier
+        params = self.params.xgb_classifier_best
         schema = self.schema.TARGET_COLUMN
         
         
