@@ -21,9 +21,9 @@ from sklearn.metrics import (
 test_data = pd.read_csv("artifacts/data_transformation/test.csv")
 
 # Load model and preprocessor
-model = joblib.load("artifacts/model_trainer/xgb_model.joblib")
+model = joblib.load("artifacts/model_trainer/xgb.joblib")
 processor = joblib.load("artifacts/model_trainer/xgb_preprocessor.joblib")
-encoder = joblib.load("artifacts/model_trainer/xgb_encoder.joblib") 
+encoder = joblib.load("artifacts/model_trainer/label_encoder.joblib") 
 
 # Separate features and target
 test_x = test_data.drop(columns="y")
