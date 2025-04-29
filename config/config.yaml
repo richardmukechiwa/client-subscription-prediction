@@ -32,7 +32,7 @@ model_trainer:
   rf_preprocessor_name: rf_preprocessor.joblib
   xgb_model_name: xgb_model.joblib
   xgb_preprocessor_name: xgb_preprocessor.joblib  
-  xgb_selected: features.joblib
+  xgb_selected: xgb.joblib
 
 
 
@@ -48,6 +48,6 @@ model_evaluation:
   rf_processor: artifacts/model_trainer/rf_preprocessor.joblib
   xgb_model: artifacts/model_trainer/xgb_model.joblib
   xgb_processor: artifacts/model_trainer/xgb_preprocessor.joblib
-  xgb_final_model: artifacts/model_trainer/features.joblib
+  xgb_final_model: artifacts/model_trainer/xgb.joblib
   
   
