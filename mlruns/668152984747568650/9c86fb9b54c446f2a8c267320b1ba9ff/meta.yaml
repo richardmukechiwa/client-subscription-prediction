@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/9c86fb9b54c446f2a8c267320b1ba9ff/artifacts
+end_time: 1746052376852
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 9c86fb9b54c446f2a8c267320b1ba9ff
+run_name: lyrical-hen-22
+run_uuid: 9c86fb9b54c446f2a8c267320b1ba9ff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746052371491
+status: 3
+tags: []
+user_id: RICH-1

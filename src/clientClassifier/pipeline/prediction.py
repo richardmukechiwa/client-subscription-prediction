@@ -7,8 +7,8 @@ from pathlib import Path
 
 class PredictionPipeline:
     def __init__(self):
-        self.model = joblib.load(Path('artifacts\model_trainer\xgb.joblib'))
-        self.processor = joblib.load(Path('artifacts\model_trainer\xgb_preprocessor.joblib'))
+        self.model = joblib.load(Path('artifacts/model_trainer/xgb.joblib'))
+        self.processor = joblib.load(Path('artifacts/model_trainer/xgb_preprocessor.joblib'))
         
         
     def predict(self, data):

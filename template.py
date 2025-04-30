@@ -23,7 +23,7 @@ list_of_files = [
     "params.yaml",
     "schema.yaml",
     "main.py",
-    "class_app.py",
+    "app.py",
     "requirements.txt",
     "setup.py",
     "research/trials.ipynb",

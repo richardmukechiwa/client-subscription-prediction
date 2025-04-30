@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/0693400c2ccf4eefb9fea5dab9787acd/artifacts
+end_time: 1746042338107
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 0693400c2ccf4eefb9fea5dab9787acd
+run_name: nimble-dog-457
+run_uuid: 0693400c2ccf4eefb9fea5dab9787acd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746042317708
+status: 3
+tags: []
+user_id: RICH-1
