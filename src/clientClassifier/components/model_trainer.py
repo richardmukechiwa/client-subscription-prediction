@@ -37,6 +37,8 @@ class ModelTrainer:
         X_train = train_data.drop(columns=[self.config.target_column])
         y_train = train_data[self.config.target_column]
         
+        
+        
         important_features = ['age', 'month', 'day', 'balance', 'poutcome']
         X_train = X_train[important_features]
 
@@ -70,6 +72,8 @@ class ModelTrainer:
 
         # Preprocess
         X_train_processed = xgb_preprocessor.fit_transform(X_train)
+        
+        print(X_train_processed[20:30])
 
         #  Define Optuna objective function
         def objective(trial):
@@ -110,17 +114,23 @@ class ModelTrainer:
             'eval_metric': 'logloss'
         })
 
-        final_model = XGBClassifier(**best_params)
-        final_model.fit(X_train_processed, y_train)
-        
-        
+        # Define full pipeline with preprocessor and classifier
+        final_pipeline = Pipeline([
+            ('preprocessor', xgb_preprocessor),
+            ('classifier', XGBClassifier(**best_params))
+        ])
+
+        # Fit the pipeline on raw X_train
+        final_pipeline.fit(X_train, y_train)
+                
         # Save everything
         xgb_label_path = os.path.join(self.config.root_dir, self.config.label_encoder_names )
         xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_selected)   
-        xgb_preprocessor_path = os.path.join(self.config.root_dir, self.config.xgb_preprocessor_name)
+  
 
         joblib.dump(label_encoder, xgb_label_path)
-        joblib.dump(final_model, xgb_model_path)
-        joblib.dump(xgb_preprocessor, xgb_preprocessor_path)
+        joblib.dump(final_pipeline, xgb_model_path)
+    
 
         logger.info("Training completed and artifacts saved!")
+

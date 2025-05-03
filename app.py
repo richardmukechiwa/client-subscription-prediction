@@ -1,23 +1,25 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import os
+import joblib
+from pathlib import Path
 from clientClassifier.pipeline.prediction import PredictionPipeline
 
-app = Flask(__name__)
+app = Flask(__name__)# Initialize Flask app
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET']) # route to home page
 def homePage():
     return render_template('index.html')
 
-@app.route('/train', methods=['GET'])
+@app.route('/train', methods=['GET']) # route to train the model
 def training():
     os.system('python main.py')
     return 'Training successfully completed!'  
 
     
 
-@app.route('/predict', methods=['GET', 'POST'])  # Allow both GET and POST
+@app.route('/predict', methods=['POST', 'GET'])  # Allow both GET and POST
 def index():
     if request.method == 'POST':
         try:
@@ -27,6 +29,7 @@ def index():
             day = int(request.form['day'])
             balance = int(request.form['balance'])
             poutcome = str(request.form['poutcome'])
+            
 
             # Create a DataFrame from the input data
             data = pd.DataFrame([[age, month, day, balance, poutcome]], 
