@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/62889062dd5a4b7e80e37b39352b183a/artifacts
+end_time: 1746276771660
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 62889062dd5a4b7e80e37b39352b183a
+run_name: stately-mole-901
+run_uuid: 62889062dd5a4b7e80e37b39352b183a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746276771637
+status: 4
+tags: []
+user_id: RICH-1

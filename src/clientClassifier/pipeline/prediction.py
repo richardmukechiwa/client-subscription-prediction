@@ -8,11 +8,11 @@ class PredictionPipeline:
     def __init__(self):
         # Define the paths to the model and preprocessor
         self.model_path = Path('artifacts/model_trainer/xgb.joblib')
-        self.processor_path = Path('artifacts/model_trainer/xgb_preprocessor.joblib')
+       
         
         # Load the model and preprocessor
         self.model = joblib.load(self.model_path)
-        self.processor = joblib.load(self.processor_path)
+        
         
     def predict(self, data):
         
@@ -30,10 +30,10 @@ class PredictionPipeline:
             raise ValueError(f"Input DataFrame must contain the following columns: {expected_columns}") 
         
         # Apply the preprocessor to the input data
-        data_processing  = self.processor.transform(data)
+    
         
         # Make predictions using the loaded model
-        prediction = self.model.predict(data_processing)
+        prediction = self.model.predict(data)
         
         # Convert NumPy array to list for JSON response
         return prediction

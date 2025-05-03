@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/a3b79fe79ed3405d9fd1a6efb021ec57/artifacts
+end_time: 1746276812664
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: a3b79fe79ed3405d9fd1a6efb021ec57
+run_name: dapper-rook-833
+run_uuid: a3b79fe79ed3405d9fd1a6efb021ec57
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746276805079
+status: 3
+tags: []
+user_id: RICH-1

@@ -4,6 +4,8 @@ import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from sklearn.pipeline import Pipeline
+
 import optuna
 
 from sklearn.compose import ColumnTransformer

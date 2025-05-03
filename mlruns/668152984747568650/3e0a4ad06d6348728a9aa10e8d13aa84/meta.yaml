@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/3e0a4ad06d6348728a9aa10e8d13aa84/artifacts
+end_time: 1746276363889
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 3e0a4ad06d6348728a9aa10e8d13aa84
+run_name: nosy-goat-647
+run_uuid: 3e0a4ad06d6348728a9aa10e8d13aa84
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746276363863
+status: 4
+tags: []
+user_id: RICH-1

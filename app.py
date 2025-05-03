@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import os
-import joblib
-from pathlib import Path
 from clientClassifier.pipeline.prediction import PredictionPipeline
 
 app = Flask(__name__)# Initialize Flask app
@@ -42,9 +40,15 @@ def index():
             # Render the result on the template
             return render_template('results.html', prediction=str(predict))
 
+        except ValueError as e:  
+            print("ValueError in prediction:", e)
+            return 'Invalid input data! Please check your input values.'
+        except FileNotFoundError as e:
+            print("FileNotFoundError in prediction:", e)
+            return 'Required file not found! Please check the server setup.'
         except Exception as e:  
-            print("Error in prediction:", e)
-            return 'Something went wrong! Please check your input data.'
+            print("Unexpected error in prediction:", e)
+            return 'An unexpected error occurred! Please try again later.'
     else:
         return render_template('index.html')  # Render form on GET request
 
