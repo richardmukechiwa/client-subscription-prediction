@@ -12,6 +12,7 @@ class ModelEvaluationTrainingPipeline:
         config = ConfigurationManager()
         model_evaluation_config = config.get_model_evaluation_config()
         model_evaluation = ModelEvaluation(config=model_evaluation_config)  # Correct variable name
+        model_evaluation.feature_importance()
         model_evaluation.log_selected_features_into_mlflow()
         
 if __name__ == "__main__":

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/87e4cdee1dac4684a5f419eb39af1bfa/artifacts
+end_time: 1746296087839
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 87e4cdee1dac4684a5f419eb39af1bfa
+run_name: agreeable-tern-628
+run_uuid: 87e4cdee1dac4684a5f419eb39af1bfa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746296082096
+status: 3
+tags: []
+user_id: RICH-1

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/ef14531c33014b0fa90d61dbd1df9daa/artifacts
+end_time: 1746287284619
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: ef14531c33014b0fa90d61dbd1df9daa
+run_name: treasured-goat-508
+run_uuid: ef14531c33014b0fa90d61dbd1df9daa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746287269351
+status: 3
+tags: []
+user_id: RICH-1

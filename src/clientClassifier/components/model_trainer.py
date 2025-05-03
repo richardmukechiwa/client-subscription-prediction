@@ -57,6 +57,10 @@ class ModelTrainer:
         pos = np.sum(y_train == 1)
         scale_pos_weight = neg / pos
         print(f"scale_pos_weight = {scale_pos_weight:.2f}")
+        
+         # Convert month to string
+        X_train["month"] = X_train["month"].astype(str)
+
 
         # Preprocessing
         numerical_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
@@ -127,11 +131,13 @@ class ModelTrainer:
                 
         # Save everything
         xgb_label_path = os.path.join(self.config.root_dir, self.config.label_encoder_names )
-        xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_selected)   
+        xgb_model_path = os.path.join(self.config.root_dir, self.config.xgb_pipeline)
+        xgb_processor_path= os.path.join(self.config.root_dir, self.config.xgb_preprocessor_name)  
   
 
         joblib.dump(label_encoder, xgb_label_path)
         joblib.dump(final_pipeline, xgb_model_path)
+        joblib.dump(xgb_preprocessor, xgb_processor_path)
     
 
         logger.info("Training completed and artifacts saved!")

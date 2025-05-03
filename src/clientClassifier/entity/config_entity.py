@@ -29,10 +29,9 @@ class DataTransformationConfig:
     root_dir: Path
     data_path: Path
 
-
 @dataclass(frozen=True)
 class ModelTrainerConfig:
-    """Model Trainer Configuration"""
+    
     root_dir: Path
     train_data_path: Path
     test_data_path: Path
@@ -52,11 +51,10 @@ class ModelTrainerConfig:
     xgb_model_name: str
     xgb_preprocessor_name: str
     xgb_selected: str
-
-
+    xgb_pipeline: str
+    
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
-    """Model Evaluation Configuration"""
     root_dir : Path
     test_data_path: Path
     model_path: Path
@@ -72,3 +70,4 @@ class ModelEvaluationConfig:
     xgb_processor: Path
     xgb_model: Path
     xgb_final_model: Path
+    xgb_pipeline_eval: Path

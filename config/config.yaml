@@ -33,6 +33,7 @@ model_trainer:
   xgb_model_name: xgb_model.joblib
   xgb_preprocessor_name: xgb_preprocessor.joblib  
   xgb_selected: xgb.joblib
+  xgb_pipeline: xgb_pipe.joblib
 
 
 
@@ -49,5 +50,6 @@ model_evaluation:
   xgb_model: artifacts/model_trainer/xgb_model.joblib
   xgb_processor: artifacts/model_trainer/xgb_preprocessor.joblib
   xgb_final_model: artifacts/model_trainer/xgb.joblib
+  xgb_pipeline_eval: artifacts/model_trainer/xgb_pipe.joblib
   
   

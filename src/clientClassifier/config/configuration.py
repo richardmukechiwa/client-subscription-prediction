@@ -90,17 +90,21 @@ class ConfigurationManager:
             sm_processor_name=config.sm_processor_name,
             target_column=schema.name,
             max_depth = params.max_depth,
+            #class_weight=params.class_weight,
             n_estimators= params.n_estimators,
             random_state=params.random_state,
             rf_model_name   = config.rf_model_name,
             rf_preprocessor_name=config.rf_preprocessor_name,
             xgb_model_name=config.xgb_model_name,
             xgb_preprocessor_name=config.xgb_preprocessor_name,
-            xgb_selected=config.xgb_selected
+            xgb_selected=config.xgb_selected,
+            xgb_pipeline=config.xgb_pipeline
            
         )
 
         return model_trainer_config
+
+        
     
     
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
@@ -125,7 +129,10 @@ class ConfigurationManager:
             metric_file_name=Path(config['metric_file_name']),
             xgb_final_model=Path(config['xgb_final_model']),
             target_column=schema.name,
+            xgb_pipeline_eval=Path(config['xgb_pipeline_eval']),
             mlflow_uri="https://dagshub.com/richardmukechiwa/client-subscription-prediction.mlflow"
         )
         
         return model_evaluation_config
+                    
+            

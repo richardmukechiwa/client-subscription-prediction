@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/321ca38feb8240b88e72f7354666a601/artifacts
+end_time: 1746287755310
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 321ca38feb8240b88e72f7354666a601
+run_name: upset-hound-7
+run_uuid: 321ca38feb8240b88e72f7354666a601
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746287739767
+status: 3
+tags: []
+user_id: RICH-1

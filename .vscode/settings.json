@@ -4,6 +4,7 @@
         "colsample",
         "disp",
         "fontsize",
+        "importances",
         "isort",
         "labelencoder",
         "logloss",

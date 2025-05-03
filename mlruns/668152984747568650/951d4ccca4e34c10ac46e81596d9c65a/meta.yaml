@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/951d4ccca4e34c10ac46e81596d9c65a/artifacts
+end_time: 1746288019660
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 951d4ccca4e34c10ac46e81596d9c65a
+run_name: bemused-carp-928
+run_uuid: 951d4ccca4e34c10ac46e81596d9c65a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746288004450
+status: 3
+tags: []
+user_id: RICH-1
