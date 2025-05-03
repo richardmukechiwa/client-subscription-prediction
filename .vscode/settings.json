@@ -12,6 +12,7 @@
         "preds",
         "proprocessor",
         "Regressionwith",
+        "sklearn",
         "xgbclassifier",
         "xgboost",
         "xticklabels",
