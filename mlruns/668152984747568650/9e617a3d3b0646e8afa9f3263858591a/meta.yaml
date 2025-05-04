@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/9e617a3d3b0646e8afa9f3263858591a/artifacts
+end_time: 1746386838539
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 9e617a3d3b0646e8afa9f3263858591a
+run_name: languid-asp-589
+run_uuid: 9e617a3d3b0646e8afa9f3263858591a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746386832889
+status: 3
+tags: []
+user_id: RICH-1

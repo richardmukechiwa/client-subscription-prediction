@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/cee63a3d203d4afaabbd0743ccf8d362/artifacts
+end_time: 1746384477570
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: cee63a3d203d4afaabbd0743ccf8d362
+run_name: unruly-cub-19
+run_uuid: cee63a3d203d4afaabbd0743ccf8d362
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746384477542
+status: 4
+tags: []
+user_id: RICH-1

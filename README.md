@@ -7,6 +7,7 @@ This project is a machine learning web application that predicts whether a clien
 Users interact with the model via a simple web interface built with Flask. Upon submitting client data (such as age, balance, contact month, and outcome of previous campaigns), the model returns a real-time prediction indicating the likelihood of a successful subscription.
 
 ### Dataset Source
+
 Name: Bank Marketing Dataset
 
 Source: UCI Machine Learning Repository

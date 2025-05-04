@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/2e560822d21241288a0bf35e4d9d9ddc/artifacts
+end_time: 1746387009495
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 2e560822d21241288a0bf35e4d9d9ddc
+run_name: auspicious-trout-680
+run_uuid: 2e560822d21241288a0bf35e4d9d9ddc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746387004965
+status: 3
+tags: []
+user_id: RICH-1

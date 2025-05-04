@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/a24f10dd7088412f9d72caedc732a90c/artifacts
+end_time: 1746380249340
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: a24f10dd7088412f9d72caedc732a90c
+run_name: sincere-hog-1000
+run_uuid: a24f10dd7088412f9d72caedc732a90c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746380249305
+status: 4
+tags: []
+user_id: RICH-1

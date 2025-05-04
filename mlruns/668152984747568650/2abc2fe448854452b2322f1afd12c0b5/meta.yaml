@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/2abc2fe448854452b2322f1afd12c0b5/artifacts
+end_time: 1746388843123
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 2abc2fe448854452b2322f1afd12c0b5
+run_name: merciful-auk-174
+run_uuid: 2abc2fe448854452b2322f1afd12c0b5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746388838664
+status: 3
+tags: []
+user_id: RICH-1

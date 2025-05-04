@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/8b50c097540048aebeae78afda51baf0/artifacts
+end_time: 1746384715128
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 8b50c097540048aebeae78afda51baf0
+run_name: sassy-bug-246
+run_uuid: 8b50c097540048aebeae78afda51baf0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746384715094
+status: 4
+tags: []
+user_id: RICH-1

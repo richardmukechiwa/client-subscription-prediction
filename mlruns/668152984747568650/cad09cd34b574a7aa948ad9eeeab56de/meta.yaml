@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/cad09cd34b574a7aa948ad9eeeab56de/artifacts
+end_time: 1746383674218
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: cad09cd34b574a7aa948ad9eeeab56de
+run_name: persistent-dog-758
+run_uuid: cad09cd34b574a7aa948ad9eeeab56de
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746383674166
+status: 4
+tags: []
+user_id: RICH-1

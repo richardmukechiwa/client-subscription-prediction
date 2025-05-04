@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/RICH-FILES/Desktop/ml/client-subscription-prediction/mlruns/668152984747568650/5dce748111774343b7f27511029cb67c/artifacts
+end_time: 1746389768521
+entry_point_name: ''
+experiment_id: '668152984747568650'
+lifecycle_stage: active
+run_id: 5dce748111774343b7f27511029cb67c
+run_name: omniscient-rat-32
+run_uuid: 5dce748111774343b7f27511029cb67c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1746389762775
+status: 3
+tags: []
+user_id: RICH-1
