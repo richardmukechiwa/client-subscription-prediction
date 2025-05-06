@@ -1,4 +1,4 @@
-name: Web Build + Deployment to GitHub Pages 
+name: client-subscription-prediction
 
 on:
   # Runs on push to any of the below branches
@@ -28,7 +28,7 @@ env:
   # Python version to use
   name: Setup Python ${{ env.PYTHON_VERSION }}
   uses: actions/setup-python@v2
-  with: python-version: 3.10
+  with: python-version: 3.10.16
   # flet-cli version to install for `flet build`
   FLET_CLI_VERSION: 0.27.5
 
