@@ -155,7 +155,7 @@ class ModelTrainer:
   
 
         joblib.dump(label_encoder, xgb_label_path)
-        joblib.dump(final_pipeline, xgb_model_path)
+        joblib.dump(final_pipeline, xgb_model_path, compress =3)
         joblib.dump(xgb_preprocessor, xgb_processor_path)
     
 

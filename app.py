@@ -1,6 +1,8 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
 from flask import Flask, render_template, request
 import pandas as pd
-import os
 from clientClassifier.pipeline.prediction import PredictionPipeline
 
 app = Flask(__name__)# Initialize Flask app
@@ -53,6 +55,7 @@ def index():
         return render_template('index.html')  # Render form on GET request
 
 if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 10000))
     app.run(host="0.0.0.0", port=8080)
 
     
