@@ -2,9 +2,28 @@
 
 ## Project Overview
 
-This project is a machine learning web application that predicts whether a client will subscribe to a term deposit based on their demographic and financial attributes. It leverages a classification model trained on the Bank Marketing dataset from a Portuguese banking institution.
+This project is a machine learning classification model designed to predict whether a customer will subscribe to a term deposit based on demographic and campaign-related features. The data comes from a marketing campaign conducted by a Portuguese bank, where customers were contacted via phone calls.
 
-Users interact with the model via a simple web interface built with Flask. Upon submitting client data (such as age, balance, contact month, and outcome of previous campaigns), the model returns a real-time prediction indicating the likelihood of a successful subscription.
+A term deposit is a financial product where a customer deposits a fixed amount of money into a bank account for a specified period and earns interest over that term. It offers:
+
+A guaranteed interest rate
+
+A fixed term duration
+
+Low risk, but with limited early withdrawal options
+
+The goal of this project is to assist banks or marketing teams in identifying likely customers, optimizing targeting strategies, and improving campaign success rates through data-driven predictions.This project is a machine learning classification model designed to predict whether a customer will subscribe to a term deposit based on demographic and campaign-related features. The data comes from a marketing campaign conducted by a Portuguese bank, where customers were contacted via phone calls.
+
+A term deposit is a financial product where a customer deposits a fixed amount of money into a bank account for a specified period and earns interest over that term. It offers:
+
+- A guaranteed interest rate
+
+- A fixed term duration
+
+- Low risk, but with limited early withdrawal options
+
+
+Users interact with the model via a simple web interface built with Flask. Upon submitting client data (such as age, balance, day of month. month, and outcome of previous campaigns), the model returns a real-time prediction indicating the likelihood of a successful subscription.
 
 ### Dataset Source
 
