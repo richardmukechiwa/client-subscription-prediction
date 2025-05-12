@@ -1,4 +1,6 @@
-# Client-Subscription-prediction
+# 💼 Bank Client Subscription Prediction
+
+A machine learning project to predict whether a client will subscribe to a term deposit using banking campaign data. The model is built with XGBoost, optimized using Optuna, and explained using SHAP values. It is deployed using Docker and Render.
 
 ## Project Overview
 
@@ -12,14 +14,9 @@ A fixed term duration
 
 Low risk, but with limited early withdrawal options
 
-
-- A guaranteed interest rate
-
-- A fixed term duration
-
-- Low risk, but with limited early withdrawal options
-
 Users interact with the model via a simple web interface built with Flask. Upon submitting client data (such as age, balance, day of month. month, and outcome of previous campaigns), the model returns a real-time prediction indicating the likelihood of a successful subscription.
+
+ 🔗 **Live App:** [https://bank-client-marketing-predictor.onrender.com](https://bank-client-marketing-predictor.onrender.com)
 
 ### Dataset Source
 
@@ -42,6 +39,30 @@ Description: Contains data related to direct marketing campaigns of a Portuguese
 - Jupyter Notebook for exploratory data analysis and prototyping
 
 - Joblib for saving the trained model and pipeline
+
+
+## ⚙️ Technologies Used
+
+- **Python**
+- **Logistic Regression**
+- **Random Forest**
+- **XGBoost** with **Optuna** for hyperparameter tuning
+- **SMOTE** for class balancing
+- **SHAP** for model explainability
+- **Docker** for containerization
+- **Render** for deployment
+- **Flask** for interactive UI
+
+## 🔍 Key Results
+
+- ✅ **Best Model**: XGBoost with Optuna tuning
+- 🎯 **F1 Score**: 1.00 at optimized threshold (0.48)
+- 💡 **Top Features (via SHAP)**:
+  - `poutcome_success`
+  - `month_5`
+  - `balance`
+  - `age`
+  - `day`
 
 ## Workflows
 
@@ -108,12 +129,58 @@ import mlflow
 import mlflow.sklearn
 
 with mlflow.start_run():
-    model = RandomForestClassifier()
+    model = XGBClassifier()
     model.fit(X_train, y_train)
     mlflow.log_param("n_estimators", 100)
     mlflow.log_metric("accuracy", accuracy_score(y_test, model.predict(X_test)))
     mlflow.sklearn.log_model(model, "model")
+
 ```
+
+ **Build Docker Image**
+   ```bash
+   docker build -t bank-prediction-app .
+   ```
+
+3. **Run the App**
+   ```bash
+   docker run -p 8501:8501 bank-prediction-app
+   ```
+
+4. **Visit** `http://localhost:8501` in your browser.
+
+---
+
+## 📈 Use Case
+
+This app helps banks:
+- Focus marketing efforts on high-potential clients
+- Save on marketing costs
+- Improve campaign success rates
+
+---
+
+## 🙋 About Me
+
+👋 I'm Richard Mukechiwa, a data science enthusiast with a passion for solving real-world problems with machine learning.
+
+🔗 [LinkedIn](https://www.linkedin.com/in/richardmukechiwa)  
+📬 [mukechiwarichard@gmail.com](mailto:mukechiwarichard@gmail.com)
+
+---
+
+## 🏷️ Tags
+
+`#MachineLearning` `#XGBoost` `#SMOTE` `#SHAP` `#Docker` `#Streamlit` `#Render` `#Banking` `#Deployment` `#OpenToWork`
+
+---
+
+## ⭐ Acknowledgements
+
+Inspired by the UCI Bank Marketing dataset and XGBoost documentation.
+
+If you like this project, feel free to ⭐ the repo and share it!
+
 
 
 
