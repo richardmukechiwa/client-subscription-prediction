@@ -1,4 +1,4 @@
-# 💼 Bank Client Subscription Prediction
+# Bank Client Subscription Prediction
 
 A machine learning project to predict whether a client will subscribe to a term deposit using banking campaign data. The model is built with XGBoost, optimized using Optuna, and explained using SHAP values. It is deployed using Docker and Render.
 
@@ -53,11 +53,11 @@ Description: Contains data related to direct marketing campaigns of a Portuguese
 - **Render** for deployment
 - **Flask** for interactive UI
 
-## 🔍 Key Results
+##  Key Results
 
-- ✅ **Best Model**: XGBoost with Optuna tuning
-- 🎯 **F1 Score**: 1.00 at optimized threshold (0.48)
-- 💡 **Top Features (via SHAP)**:
+-  **Best Model**: XGBoost with Optuna tuning
+-  **F1 Score**: 1.00 at optimized threshold (0.48)
+-  **Top Features (via SHAP)**:
   - `poutcome_success`
   - `month_5`
   - `balance`
@@ -151,7 +151,7 @@ with mlflow.start_run():
 
 ---
 
-## 📈 Use Case
+##  Use Case
 
 This app helps banks:
 - Focus marketing efforts on high-potential clients
@@ -169,13 +169,13 @@ This app helps banks:
 
 ---
 
-## 🏷️ Tags
+##  Tags
 
 `#MachineLearning` `#XGBoost` `#SMOTE` `#SHAP` `#Docker` `#Streamlit` `#Render` `#Banking` `#Deployment` `#OpenToWork`
 
 ---
 
-## ⭐ Acknowledgements
+##  Acknowledgements
 
 Inspired by the UCI Bank Marketing dataset and XGBClassifier documentation.
 
