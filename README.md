@@ -179,7 +179,7 @@ This app helps banks:
 
 Inspired by the UCI Bank Marketing dataset and XGBoost documentation.
 
-If you like this project, feel free to ⭐ the repo and share it!
+If you like this project, feel free to clone the repo and share it!
 
 
 
