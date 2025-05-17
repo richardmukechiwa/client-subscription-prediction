@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
+        "Buildx",
         "bytree",
         "colsample",
         "disp",
+        "DOCKERHUB",
         "explainability",
         "fontsize",
         "importances",
@@ -13,6 +15,7 @@
         "preds",
         "proprocessor",
         "Regressionwith",
+        "richdata",
         "SHAP",
         "sklearn",
         "xgbclassifier",
